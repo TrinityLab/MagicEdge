@@ -37,6 +37,8 @@ void Player::OnCreated()
 	score = new Text("PlayerScore", "Visitor", temp);
 	score->SetPosition(20, 160);
 	score->SetOrigin(0, 0);
+	score->SetText("Score: 0");
+	score->SetFontSize(30);
 	ScoreTable::SetScore(0);
 }
 
@@ -94,6 +96,19 @@ void Player::Update()
 			ball->SetColor({ 255, 255, 255, 255 });
 
 			setMana(getMana() - 1);
+		}
+	}
+
+	double dirX = GetXPosition() - (World::WIDTH / 2 * Block::TILE_SIZE);
+	double dirY = GetYPosition() - (World::HEIGHT / 2 * Block::TILE_SIZE);
+
+	double dist = sqrt(dirX * dirX + dirY * dirY);
+
+	if (dist != 0)
+	{
+		if (rand() % 100000 <= 1000000 / dist)
+		{
+			setMana(getMana() + 1);
 		}
 	}
 }
@@ -179,8 +194,8 @@ void Player::setLevel(int l)
 	char lvl[100] = {};
 	_itoa_s(getLevel(), lvl, 100, 10);
 	string temp = "Level: ";
+	level->SetText(temp);
 	level->SetFontSize(30);
-	level->SetText(lvl);
 }
 
 void Player::setHealth(int health)
