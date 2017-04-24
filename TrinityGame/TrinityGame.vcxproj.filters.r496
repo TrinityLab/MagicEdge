@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AnimatedObject.cpp" />
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="DifficultyInfo.cpp" />
+    <ClCompile Include="DungeonScene.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="MasterManager.cpp" />
+    <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObstacleMap.cpp" />
+    <ClCompile Include="OverWorldScene.cpp" />
+    <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Dirt.cpp" />
+    <ClCompile Include="Grass.cpp" />
+    <ClCompile Include="Overworld.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Water.cpp" />
+    <ClCompile Include="Way.cpp" />
+    <ClCompile Include="TexturedObject.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Viewer.cpp" />
+    <ClCompile Include="VoidBlock.cpp" />
+    <ClCompile Include="World.cpp" />
+    <ClCompile Include="Sand.cpp" />
+    <ClCompile Include="Stone.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AnimatedObject.h" />
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="DifficultyInfo.h" />
+    <ClInclude Include="DungeonScene.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MasterManager.h" />
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObstacleMap.h" />
+    <ClInclude Include="OverWorldScene.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Screen.h" />
+    <ClInclude Include="SDL_mixer.h" />
+    <ClInclude Include="TexturedObject.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="TrinityFramework.h" />
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="Block.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Dirt.h" />
+    <ClInclude Include="Grass.h" />
+    <ClInclude Include="Overworld.h" />
+    <ClInclude Include="Viewer.h" />
+    <ClInclude Include="VoidBlock.h" />
+    <ClInclude Include="Water.h" />
+    <ClInclude Include="World.h" />
+    <ClInclude Include="WriteText.h" />
+    <ClInclude Include="Sand.h" />
+    <ClInclude Include="Stone.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="SDL2_mixer.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
