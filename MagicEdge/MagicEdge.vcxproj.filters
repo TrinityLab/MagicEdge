@@ -301,6 +301,18 @@
       <Filter>Objects\Entities</Filter>
     </ClInclude>
     <ClInclude Include="SDL_mixer.h" />
+    <ClInclude Include="Trees2.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Tump.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="VoidBlock.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

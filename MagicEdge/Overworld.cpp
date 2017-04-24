@@ -37,12 +37,12 @@ void Overworld::Generate()
 	{
 		for (int j = 0; j < World::HEIGHT; j++)
 		{
-			blocks[0][i][j] = new Grass(i, j);
-			blocks[1][i][j] = new VoidBlock(i, j);
+			SetBlock(i, j, 0, new Grass(i, j));
+			SetBlock(i, j, 1, new VoidBlock(i, j));
 		}
 	}
 
-	blocks[1][50][50] = new Altar(50, 50);
+	SetBlock(50, 50, 1, new Altar(50, 50));
 
 	int centerX = WIDTH / 2;
 	int centerY = HEIGHT / 2;
@@ -55,11 +55,8 @@ void Overworld::Generate()
 		{
 			if ((i - centerX) * (i - centerX) + (j - centerY) * (j - centerY) > r * r)
 			{
-				delete blocks[0][i][j];
-				delete blocks[1][i][j];
-
-				blocks[0][i][j] = new Water(i, j);
-				blocks[1][i][j] = new VoidBlock(i, j);
+				SetBlock(i, j, 0, new Water(i, j));
+				SetBlock(i, j, 1, new VoidBlock(i, j));
 			}
 			else
 			{
@@ -69,8 +66,8 @@ void Overworld::Generate()
 					{
 						for (int jx = j + rand() % 3; jx < j + 3 + rand() % 9; jx++)
 						{
-							if(!ObstacleMap::IsObstacle(ix, jx))
-								blocks[0][ix][jx] = new Dirt(ix, jx);
+							if (!ObstacleMap::IsObstacle(ix, jx))
+								SetBlock(ix, jx, 0, new Dirt(ix, jx));
 						}
 					}
 				}
@@ -79,7 +76,7 @@ void Overworld::Generate()
 					for (int ix = i + 3; ix < i + 9; ix++)
 						for (int jx = j + rand() % 3; jx < j + 3 + rand() % 9; jx++)
 						{
-							blocks[0][ix][jx] = new Water(ix, jx);
+							SetBlock(ix, jx, 0, new Water(ix, jx));
 						}
 				}
 			}
@@ -90,7 +87,7 @@ void Overworld::Generate()
 					for (int jx = j + rand() % 3; jx < j + 3 + rand() % 10; jx++)
 					{
 						if (!ObstacleMap::IsObstacle(ix, jx))
-							blocks[0][ix][jx] = new Sand(ix, jx);
+							SetBlock(ix, jx, 0, new Sand(ix, jx));
 					}
 			}
 
@@ -101,7 +98,7 @@ void Overworld::Generate()
 					for (int jx = j + rand() % 3; jx < j + 3 + rand() % 9; jx++)
 					{
 						if (!ObstacleMap::IsObstacle(ix, jx))
-							blocks[0][ix][jx] = new Stone(ix, jx);
+							SetBlock(ix, jx, 0, new Stone(ix, jx));
 					}
 			}
 		}
@@ -115,13 +112,13 @@ void Overworld::Generate()
 				continue;
 
 			if (rand() % 1000 < 9)
-				blocks[1][i][j] = new Tree(i, j);
+				SetBlock(i, j, 1, new Tree(i, j));
 			if (rand() % 1000 < 9)
-				blocks[1][i][j] = new Rock(i, j);
+				SetBlock(i, j, 1, new Rock(i, j));
 			if (rand() % 1000 < 2)
-				blocks[1][i][j] = new Tump(i, j);
+				SetBlock(i, j, 1, new Tump(i, j));
 			if (rand() % 1000 < 3)
-				blocks[1][i][j] = new Trees2(i, j);
+				SetBlock(i, j, 1, new Trees2(i, j));
 		}
 	}
 

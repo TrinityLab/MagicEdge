@@ -7,8 +7,6 @@
 
 class World : public Object
 {
-protected:
-	int enemiesCount;
 public:
 	World(string name);
 	virtual void Generate();
@@ -24,6 +22,9 @@ public:
 	void UpdateEnemiesCount(int add);
 
 	string GetBlockType(int x, int y, int layer);
+	void SetBlock(int x, int y, int layer, Block* block);
 protected:
+	int enemiesCount;
+private:
 	Block* blocks[2][WIDTH][HEIGHT];
 };

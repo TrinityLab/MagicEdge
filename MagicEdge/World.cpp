@@ -8,6 +8,17 @@
 World::World(string name) : Object(name)
 {
 	enemiesCount = 0;
+
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+		{
+			for (int k = 0; k < HEIGHT; k++)
+			{
+				blocks[i][j][k] = NULL;
+			}
+		}
+	}
 }
 
 void World::Generate()
@@ -120,4 +131,17 @@ string World::GetBlockType(int x, int y, int layer)
 void World::UpdateEnemiesCount(int add)
 {
 	enemiesCount += add;
+}
+
+void World::SetBlock(int x, int y, int layer, Block* block)
+{
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || layer < 0 || layer > 1)
+		return;
+
+	if (blocks[layer][x][y] != NULL)
+	{
+		delete blocks[layer][x][y];
+	}
+
+	blocks[layer][x][y] = block;
 }
