@@ -19,10 +19,10 @@ void Player::OnCreated()
 	SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
 	SetPosition(World::WIDTH / 2 * Block::TILE_SIZE, World::HEIGHT / 2 * Block::TILE_SIZE);
 
-	name = new Text("PlayerName");
+	/*name = new Text("PlayerName");
 	name->SetText(ScoreTable::userName.c_str());
 	name->SetPosition(20, 120);
-	name->SetColor({ 0, 0, 0, 255 });
+	name->SetColor({ 0, 0, 0, 255 });*/
 }
 
 void Player::OnDestroyd()

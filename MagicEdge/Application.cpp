@@ -90,9 +90,9 @@ void Application::LoadResources()
 	ResourceManager::LoadTexture("Tree", "Texture/barriertree1.png");
 	ResourceManager::LoadTexture("Tree2", "Texture/barriertree2.png");
 	ResourceManager::LoadTexture("InsectEnemy", "Texture/enemy.png");
-	ResourceManager::LoadTexture("InsectEnemy", "Texture/enemyback.png");
-	ResourceManager::LoadTexture("InsectEnemy", "Texture/enemyleft.png");
-	ResourceManager::LoadTexture("InsectEnemy", "Texture/enemyright.png");
+	ResourceManager::LoadTexture("InsectEnemyBack", "Texture/enemyback.png");
+	ResourceManager::LoadTexture("InsectEnemyLeft", "Texture/enemyleft.png");
+	ResourceManager::LoadTexture("InsectEnemyRight", "Texture/enemyright.png");
 	ResourceManager::LoadTexture("MagicBall", "Texture/magic.png");
 	ResourceManager::LoadTexture("Shadow", "Texture/Shadow.png");
 	ResourceManager::LoadTexture("Scale", "Texture/scale.png");

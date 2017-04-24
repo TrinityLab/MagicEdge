@@ -47,9 +47,9 @@ void MainMenu::Update()
 	Button* startButton = (Button*)SceneManager::GetCurrentScene()->FindObject("StartButton");
 	if (startButton->IsPressed())
 	{
-		if (rand() % 100 < 50)
+		/*if (rand() % 100 < 50)
 			SceneManager::OpenScene("DungeonScene");
-		else
+		else*/
 			SceneManager::OpenScene("Overworld");
 	}
 

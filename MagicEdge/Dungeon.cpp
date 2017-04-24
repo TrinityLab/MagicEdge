@@ -13,7 +13,7 @@
 #include "ScoreTable.h"
 #include "Boss.h"
 
-Dungeon::Dungeon(string name) : World(name)
+Dungeon::Dungeon(string name) : Overworld(name)
 {
 	
 }

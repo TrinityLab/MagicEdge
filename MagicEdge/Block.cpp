@@ -28,7 +28,7 @@ void Block::Render()
 
 	SDL_QueryTexture(texture, NULL, NULL, &w, &h);
 	SDL_Rect srcRect = { 0, 0, w, h };
-	SDL_Rect dstRect = { (int)(-Camera::GetXOffset() + x * TILE_SIZE + TILE_SIZE / 2 - (int)(width * xCenter)), (int)(-Camera::GetYOffset() + y * TILE_SIZE + TILE_SIZE / 2 - (int)(height * yCenter), width, height) };
+	SDL_Rect dstRect = { -Camera::GetXOffset() + x * TILE_SIZE + TILE_SIZE / 2 - width * xCenter, -Camera::GetYOffset() + y * TILE_SIZE + TILE_SIZE / 2 - height * yCenter, width, height };
 
 	SDL_RenderCopy(Screen::GetRenderer(), texture, &srcRect, &dstRect);
 }

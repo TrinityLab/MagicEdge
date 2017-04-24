@@ -3,7 +3,7 @@
 #include "System.h"
 #include "Overworld.h"
 
-class Dungeon : public World
+class Dungeon : public Overworld
 {
 public:
 	Dungeon(string name);
