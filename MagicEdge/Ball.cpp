@@ -84,16 +84,18 @@ void Ball::Update()
 
 			if (objects[i]->getHealth() <= 0)
 			{
-				if (player->getExp() >= player->getLevel() * 100)
+				double dirX = player->GetXPosition() / Block::TILE_SIZE - World::WIDTH / 2;
+				double dirY = player->GetYPosition() / Block::TILE_SIZE - World::HEIGHT / 2;
+				double dist = sqrt(dirX * dirX + dirY * dirY);
+
+				if ((player->getExp() + (int)(dist / 2)) >= player->getLevel() * 100)
 				{
 					player->setLevel(player->getLevel() + 1);
 					player->setExp(0);
 				}
 				else
 				{
-					double dirX = player->GetXPosition() / Block::TILE_SIZE - World::WIDTH / 2;
-					double dirY = player->GetYPosition() / Block::TILE_SIZE - World::HEIGHT / 2;
-					double dist = sqrt(dirX * dirX + dirY * dirY);
+					
 
 					player->setExp(player->getExp() + (int)(dist / 2));
 				}
