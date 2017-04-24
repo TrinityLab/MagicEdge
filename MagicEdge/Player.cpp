@@ -3,6 +3,7 @@
 #include "Ball.h"
 #include "ScoreTable.h"
 #include "Button.h"
+#include "Portal.h"
 
 Player::Player(string name) : Entity(name)
 {
@@ -194,8 +195,16 @@ void Player::setLevel(int l)
 	char lvl[100] = {};
 	_itoa_s(getLevel(), lvl, 100, 10);
 	string temp = "Level: ";
+	temp += lvl;
 	level->SetText(temp);
 	level->SetFontSize(30);
+
+	if (l > 1)
+	{
+		Portal* portal = (Portal*)SceneManager::GetCurrentScene()->FindObject("Portal");
+		if(portal != NULL)
+			portal->SetTexture(ResourceManager::GetTexture("Portal"), 3, 1, 8, true);
+	}
 }
 
 void Player::setHealth(int health)

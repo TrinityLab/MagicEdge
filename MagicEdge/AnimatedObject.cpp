@@ -24,6 +24,11 @@ void AnimatedObject::SetTexture(SDL_Texture* texture, int framesPerWidth, int fr
 	this->looped = looped;
 
 	time = 1.0 / FPS;
+
+	currentFrameX = 0;
+	currentFrameY = 0;
+
+	Play();
 }
 
 void AnimatedObject::Update()

@@ -23,10 +23,8 @@ void Portal::Update()
 
 	double dist = sqrt(dirX * dirX + dirY * dirY);
 	
-	if (player->getLevel()>0)
+	if (player->getLevel() > 1)
 	{
-		SetTexture(ResourceManager::GetTexture("Portal"), 3, 1, 8, true);
-
 		if (dist <= Block::TILE_SIZE)
 		{
 			go = true;
