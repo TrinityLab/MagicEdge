@@ -33,8 +33,11 @@ void TexturedObject::Render()
 	if (texture == NULL)
 		return;
 
-	xPosition -= Camera::GetXOffset();
-	yPosition -= Camera::GetYOffset();
+	if (useCamera)
+	{
+		xPosition -= Camera::GetXOffset();
+		yPosition -= Camera::GetYOffset();
+	}
 
 	FRect rect = GetLocalBoundingBox();
 	SDL_Rect dst = { (int)rect.x + (int)GetXPosition(), (int)rect.y + (int)GetYPosition(), (int)rect.w, (int)rect.h };
@@ -45,8 +48,11 @@ void TexturedObject::Render()
 
 	SDL_RenderCopyEx(Screen::GetRenderer(), texture, &srcRect, &dst, GetRotation() * 180.0 / M_PI, &point, SDL_FLIP_NONE);
 
-	xPosition += Camera::GetXOffset();
-	yPosition += Camera::GetYOffset();
+	if (useCamera)
+	{
+		xPosition += Camera::GetXOffset();
+		yPosition += Camera::GetYOffset();
+	}
 }
 
 void TexturedObject::Update()

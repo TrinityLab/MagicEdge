@@ -153,10 +153,18 @@
     <ClCompile Include="OrkEnemy.cpp">
       <Filter>Objects\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Tump.cpp" />
-    <ClCompile Include="VoidBlock.cpp" />
-    <ClCompile Include="Water.cpp" />
-    <ClCompile Include="Trees2.cpp" />
+    <ClCompile Include="Trees2.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Tump.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Water.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="VoidBlock.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">

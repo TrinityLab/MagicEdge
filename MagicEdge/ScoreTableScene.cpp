@@ -39,14 +39,16 @@ void ScoreTableScene::OnOpened()
 	background->SetTexture(ResourceManager::GetTexture("MenuBackground"));
 	background->SetSrcRect({ 0, 0, 1280, 720 });
 
-	Button* exitButton = new Button("MainMenuButton", "Button", "ButtonHover", "ButtonPressed", "Back");
+	Button* exitButton = new Button("MainMenuButton", "Button", "ButtonHover", "ButtonPressed");
+	exitButton->SetText("Back");
 	exitButton->SetPosition(Screen::GetWidth() / 2, 250 + 220 + 100);
 	exitButton->SetSize(440, 110);
 	exitButton->SetSrcRect({ 0, 0, 440, 110 });
 
 	vector<Result> results = ScoreTable::LoadScores();
 	
-	Button* head = new Button("Header", "TableHead", "TableHead", "TableHead", "Name     Score");
+	Button* head = new Button("Header", "TableHead", "TableHead", "TableHead");
+	head->SetText("Name     Score");
 	head->SetPosition(Screen::GetWidth() / 2, 150 - 60);
 	head->SetSize(600, 60);
 	head->SetSrcRect({ 0, 0, 609, 63 });
@@ -60,7 +62,8 @@ void ScoreTableScene::OnOpened()
 		sprintf_s(name, 100, "%s%d", "Row", count);
 		char res[100] = {};
 		sprintf_s(res, 100, "%s     %d", results[i].name.c_str(), results[i].score);
-		Button* row = new Button(name, "TableRow", "TableRow", "TableRow", res);
+		Button* row = new Button(name, "TableRow", "TableRow", "TableRow");
+		row->SetText(res);
 		row->SetPosition(Screen::GetWidth() / 2, 150 + 60 * count );
 		row->SetSize(600, 60);
 		row->SetSrcRect({ 0, 0, 609, 63 });

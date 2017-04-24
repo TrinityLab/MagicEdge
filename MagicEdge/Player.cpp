@@ -19,10 +19,25 @@ void Player::OnCreated()
 	SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
 	SetPosition(World::WIDTH / 2 * Block::TILE_SIZE, World::HEIGHT / 2 * Block::TILE_SIZE);
 
-	/*name = new Text("PlayerName");
+	name = new Text("PlayerName", "Visitor");
 	name->SetText(ScoreTable::userName.c_str());
+	name->SetOrigin(0, 0);
 	name->SetPosition(20, 120);
-	name->SetColor({ 0, 0, 0, 255 });*/
+	name->SetFontSize(30);
+
+	char lvl[100] = {};
+	_itoa_s(getLevel(), lvl, 100, 10);
+	string temp = "Level: ";
+	temp += lvl;
+	level = new Text("PlayerLevel", "Visitor", temp);
+	level->SetPosition(200, 160);
+	level->SetOrigin(0, 0);
+	level->SetFontSize(30);
+
+	score = new Text("PlayerScore", "Visitor", temp);
+	score->SetPosition(20, 160);
+	score->SetOrigin(0, 0);
+	ScoreTable::SetScore(0);
 }
 
 void Player::OnDestroyd()
@@ -127,16 +142,6 @@ void Player::Render()
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("ScaleEXP"), NULL, &target2);
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("Scale"), NULL, &target1);
 
-	/*WriteText(ScoreTable::userName.c_str(), 20, 120, { 0, 0, 0, 255 }, 30);
-
-	char str[100] = {};
-	sprintf_s(str, 100, "Score: %d", ScoreTable::score);
-	WriteText(str, 20, 160, { 0, 0, 0, 255 }, 30);
-
-	str[100];
-	sprintf_s(str, 100, "Level: %d", getLevel());
-	WriteText(str, 200, 160, { 0, 0, 0, 255 }, 30);*/
-
 	yPosition -= offset;
 }
 
@@ -170,6 +175,12 @@ void Player::setLevel(int l)
 
 	difficulty = l;
 	setSpeed(200);
+
+	char lvl[100] = {};
+	_itoa_s(getLevel(), lvl, 100, 10);
+	string temp = "Level: ";
+	level->SetFontSize(30);
+	level->SetText(lvl);
 }
 
 void Player::setHealth(int health)
@@ -186,7 +197,8 @@ void Player::setHealth(int health)
 		background->SetSrcRect({ 0, 0, 1280, 720 });
 		background->SetOrigin(0, 0);
 		
-		Button* button = new Button("Exit2", "Button", "ButtonHover", "ButtonPressed", "To main menu");
+		Button* button = new Button("Exit2", "Button", "ButtonHover", "ButtonPressed");
+		button->SetText("To main menu");
 		button->SetPosition(Screen::GetWidth() / 2, Screen::GetHeight() / 2 - 40);
 		button->SetSize(440, 110);
 		button->SetSrcRect({ 0, 0, 440, 110 });

@@ -14,11 +14,10 @@ protected:
 
 	Text* text;
 public:
-	Button(string name, string normalTex, string hoverTex, string pressedTex, string text);
+	Button(string name, string normalTex, string hoverTex, string pressedTex);
 	void Update() override;
 	bool IsPressed();
-	void SetText(string text);
-	void SetTextColor(SDL_Color color);
+	void SetText(string text, SDL_Color color = {0, 0, 0, 255});
 	virtual void SetPosition(double x, double y) override;
 	virtual void SetSize(double x, double y) override;
 	virtual void SetRotation(double angle) override;

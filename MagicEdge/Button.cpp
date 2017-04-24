@@ -2,15 +2,13 @@
 #include "Mouse.h"
 #include "ResourceManager.h"
 
-Button::Button(string name, string normalTex, string hoverTex, string pressedTex, string text) :TexturedObject(name)
+Button::Button(string name, string normalTex, string hoverTex, string pressedTex) : TexturedObject(name)
 {
 	Normal = normalTex;
 	Hover = hoverTex;
 	Pressed = pressedTex;
 
-	this->text = new Text(name + "_Text");
-	
-	SetText(text);
+	this->text = new Text(name + "_Text", "Visitor");
 }
 
 void Button::Update()
@@ -38,14 +36,9 @@ bool Button::IsPressed()
 	return isPressed;
 }
 
-void Button::SetText(string txt)
+void Button::SetText(string txt, SDL_Color color)
 {
-	text->SetText(txt);
-}
-
-void Button::SetTextColor(SDL_Color color)
-{
-	text->SetColor(color);
+	text->SetText(txt, color);
 }
 
 void Button::SetPosition(double x, double y)
@@ -59,7 +52,7 @@ void Button::SetSize(double x, double y)
 {
 	TexturedObject::SetSize(x, y);
 
-	text->SetSize(GetXSize() * 0.7, GetYSize() * 0.7);
+	text->SetFontSize((int)(y * 0.5));
 }
 
 void Button::SetRotation(double angle)

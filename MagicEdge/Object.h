@@ -59,5 +59,7 @@ public:
 
 	FRect GetLocalBoundingBox();
 
+	bool useCamera = true;
+
 	friend class Scene;
 };

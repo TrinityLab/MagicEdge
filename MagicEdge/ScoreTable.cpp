@@ -1,5 +1,7 @@
 #include "ScoreTable.h"
 #include <stdio.h>
+#include "Text.h"
+#include "SceneManager.h"
 
 int ScoreTable::score = 0;
 std::string ScoreTable::userName;
@@ -77,4 +79,27 @@ vector<Result> ScoreTable::LoadScores()
 	fclose(file);
 
 	return results;
+}
+
+void ScoreTable::SetScore(int score)
+{
+	ScoreTable::score = score;
+
+	Text* text = (Text*)SceneManager::GetCurrentScene()->FindObject("PlayerScore");
+	if (text == NULL)
+	{
+		return;
+	}
+
+	char scr[100] = {};
+	string temp = "Score: ";
+	_itoa_s(score, scr, 100, 10);
+	temp += scr;
+	text->SetText(temp);
+	text->SetFontSize(30);
+}
+
+void ScoreTable::AddScore(int score)
+{
+	SetScore(ScoreTable::score + score);
 }

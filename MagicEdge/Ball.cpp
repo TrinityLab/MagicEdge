@@ -98,7 +98,7 @@ void Ball::Update()
 					player->setExp(player->getExp() + (int)(dist / 2));
 				}
 
-				ScoreTable::score += objects[i]->GetScore();
+				ScoreTable::AddScore(objects[i]->GetScore());
 				World* world = (World*)SceneManager::GetCurrentScene()->FindObject("World");
 				world->UpdateEnemiesCount(-1);
 			}

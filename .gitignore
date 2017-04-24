@@ -260,5 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 
-scores.txt
-scoresCount.txt
+*scores.txt
+*scoresCount.txt

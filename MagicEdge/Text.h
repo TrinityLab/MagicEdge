@@ -7,11 +7,11 @@ class Text : public TexturedObject
 protected:
 	string text;
 	string font;
-	SDL_Color color;
+	void SetSizeForce(double w, double h);
 public:
-	Text(string name, string text = "");
-	void SetText(string text);
+	Text(string name, string font, string text = "");
+	void SetText(string text, SDL_Color color = {0, 0, 0, 255});
 	void SetFont(string font);
-	void SetColor(SDL_Color color);
+	void SetFontSize(int size);
 	virtual void SetSize(double x, double y) override;
 };

@@ -15,7 +15,7 @@ void MainMenu::OnOpened()
 {
 	SDL_Delay(1000);
 
-	ScoreTable::score = 0;
+	ScoreTable::AddScore(0);
 
 	TexturedObject* background = new TexturedObject("Background");
 	background->SetOrigin(0, 0);
@@ -24,17 +24,20 @@ void MainMenu::OnOpened()
 	background->SetTexture(ResourceManager::GetTexture("MenuBackground"));
 	background->SetSrcRect({ 0, 0, 1280, 720 });
 
-	Button* startButton = new Button("StartButton", "Button", "ButtonHover", "ButtonPressed", "Start game");
+	Button* startButton = new Button("StartButton", "Button", "ButtonHover", "ButtonPressed");
+	startButton->SetText("Start game");
 	startButton->SetPosition(Screen::GetWidth() / 2, 250);
 	startButton->SetSize(440, 110);
 	startButton->SetSrcRect({ 0, 0, 440, 110 });
 
-	Button* scoresButton = new Button("ScoresButton", "Button", "ButtonHover", "ButtonPressed", "Scores");
+	Button* scoresButton = new Button("ScoresButton", "Button", "ButtonHover", "ButtonPressed");
+	scoresButton->SetText("Scores");
 	scoresButton->SetPosition(Screen::GetWidth() / 2, 250 + 110 + 50);
 	scoresButton->SetSize(440, 110);
 	scoresButton->SetSrcRect({ 0, 0, 440, 110 });
 
-	Button* exitButton = new Button("ExitButton", "Button", "ButtonHover", "ButtonPressed", "Exit");
+	Button* exitButton = new Button("ExitButton", "Button", "ButtonHover", "ButtonPressed");
+	exitButton->SetText("Exit");
 	exitButton->SetPosition(Screen::GetWidth() / 2, 250 + 220 + 100);
 	exitButton->SetSize(440, 110);
 	exitButton->SetSrcRect({ 0, 0, 440, 110 });
