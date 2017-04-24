@@ -6,7 +6,7 @@ bool Portal::go;
 Portal::Portal(string name) : AnimatedObject(name)
 {
 	go = false;
-	SetTexture(ResourceManager::GetTexture("Portal"), 3, 1, 8, true);
+	SetTexture(ResourceManager::GetTexture("Portal"), 3, 1, 0, false);
 	SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
 }
 
@@ -22,10 +22,15 @@ void Portal::Update()
 	double dirY = player->GetYPosition() - GetYPosition();
 
 	double dist = sqrt(dirX * dirX + dirY * dirY);
-
-	if (dist <= Block::TILE_SIZE)
+	
+	if (player->getLevel()>0)
 	{
-		go = true;
+		SetTexture(ResourceManager::GetTexture("Portal"), 3, 1, 8, true);
+
+		if (dist <= Block::TILE_SIZE)
+		{
+			go = true;
+		}
 	}
 }
 
