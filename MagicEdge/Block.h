@@ -18,6 +18,7 @@ public:
 	virtual void OnPlayerInteract();
 	virtual bool IsObstacle();
 	virtual string GetBlockName() = 0;
+	double GetDistanceToPlayer();
 	void SetTexture(SDL_Texture* texture);
 	SDL_Texture* GetTexture();
 

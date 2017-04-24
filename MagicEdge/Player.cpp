@@ -18,7 +18,6 @@ void Player::OnCreated()
 	setSpeed(200);
 
 	SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
-	SetPosition(World::WIDTH / 2 * Block::TILE_SIZE, World::HEIGHT / 2 * Block::TILE_SIZE);
 
 	name = new Text("PlayerName", "Visitor");
 	name->SetText(ScoreTable::userName.c_str());
@@ -97,19 +96,6 @@ void Player::Update()
 			ball->SetColor({ 255, 255, 255, 255 });
 
 			setMana(getMana() - 1);
-		}
-	}
-
-	double dirX = GetXPosition() - (World::WIDTH / 2 * Block::TILE_SIZE);
-	double dirY = GetYPosition() - (World::HEIGHT / 2 * Block::TILE_SIZE);
-
-	double dist = sqrt(dirX * dirX + dirY * dirY);
-
-	if (dist != 0)
-	{
-		if (rand() % 100000 <= 1000000 / dist)
-		{
-			setMana(getMana() + 1);
 		}
 	}
 }

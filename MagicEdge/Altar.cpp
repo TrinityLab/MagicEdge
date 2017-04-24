@@ -12,3 +12,18 @@ string Altar::GetBlockName()
 {
 	return "Altar";
 }
+
+void Altar::Update()
+{
+	if (GetDistanceToPlayer() < 10 * TILE_SIZE)
+	{
+		if (rand() % 1000 < 100)
+		{
+			Player* player = (Player*)SceneManager::GetCurrentScene()->FindObject("Player");
+			if (player == NULL)
+				return;
+
+			player->setMana(player->getMana() + 1);
+		}
+	}
+}
