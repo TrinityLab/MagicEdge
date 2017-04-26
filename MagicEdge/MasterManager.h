@@ -4,6 +4,7 @@
 #include "MainMenu.h"
 #include "OverWorldScene.h"
 #include "DungeonScene.h"
+#include "DesertScene.h"
 
 class MasterManager : public SceneManager
 {

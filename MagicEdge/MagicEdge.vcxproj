@@ -148,6 +148,8 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Desert.cpp" />
+    <ClCompile Include="DesertScene.cpp" />
     <ClCompile Include="DifficultyInfo.cpp" />
     <ClCompile Include="Dirt.cpp" />
     <ClCompile Include="Dungeon.cpp" />
@@ -197,6 +199,8 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Desert.h" />
+    <ClInclude Include="DesertScene.h" />
     <ClInclude Include="DifficultyInfo.h" />
     <ClInclude Include="Dirt.h" />
     <ClInclude Include="Dungeon.h" />

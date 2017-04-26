@@ -68,13 +68,18 @@ void OverWorldScene::Update()
 
 	if (Portal::NeedGo())
 	{
-		if (rand() % 100 < 50)
+		int chance = rand() % 75;
+		if (chance< 25)
 		{
 			SceneManager::OpenScene("Overworld");
 		}
-		else
+		if(chance>=25 && chance<50)
 		{
 			SceneManager::OpenScene("DungeonScene");
+		}
+		if (chance >= 50 && chance < 75)
+		{
+			SceneManager::OpenScene("DesertScene");
 		}
 	}
 }
