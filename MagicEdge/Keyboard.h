@@ -13,4 +13,5 @@ public:
 	static bool IsKey(Uint8 key);
 	static bool IsKeyDown(Uint8 key);
 	static bool IsKeyUp(Uint8 key);
+	static int GetKeyCount();
 };

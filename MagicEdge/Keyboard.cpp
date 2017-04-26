@@ -34,3 +34,8 @@ bool Keyboard::IsKeyUp(Uint8 key)
 
 	return prevState[key] && !state[key];
 }
+
+int Keyboard::GetKeyCount()
+{
+	return keyCount;
+}
