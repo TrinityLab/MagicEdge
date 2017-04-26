@@ -11,6 +11,12 @@ TexturedObject::TexturedObject(string name) : Object(name)
 void TexturedObject::SetTexture(SDL_Texture* texture)
 {
 	this->texture = texture;
+
+	int width, height;
+
+	SDL_QueryTexture(texture, NULL, NULL, &width, &height);
+
+	SetSrcRect({ 0, 0, width, height });
 }
 
 SDL_Texture* TexturedObject::GetTexture()

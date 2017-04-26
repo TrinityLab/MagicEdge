@@ -3,9 +3,7 @@
 
 OrkEnemy::OrkEnemy(string name) : InsectEnemy(name)
 {
-	SetTexture(ResourceManager::GetTexture("OrkEnemy"), 1, 1, 0, false);
-
-	setLevel(max(rand() % 3 - 1 + difficulty, 1));
+	
 }
 
 void OrkEnemy::Move(double x, double y)
@@ -46,4 +44,13 @@ void OrkEnemy::setLevel(int l)
 int OrkEnemy::GetScore()
 {
 	return getLevel() * 2;
+}
+
+void OrkEnemy::OnCreated()
+{
+	InsectEnemy::OnCreated();
+
+	SetTexture(ResourceManager::GetTexture("OrkEnemy"), 1, 1, 0, false);
+
+	setLevel(max(rand() % 3 - 1 + difficulty, 1));
 }

@@ -7,22 +7,7 @@
 
 InsectEnemy::InsectEnemy(string name) : Entity(name)
 {
-	setLevel(max(rand() % 3 - 1 + difficulty, 1));
-	if (getLevel() <= 0)
-		setLevel(1);
-
-	SetSize(Block::TILE_SIZE * 1.5, Block::TILE_SIZE * 1.5);
-
-	int type = rand() % 2;
-
-	SetTexture(ResourceManager::GetTexture("InsectEnemy"), 1, 1, 0, false);
-
-	setSpeed(75.0);
-
-	currentReloadTime = attackReloadTime;
-
-	World* world = (World*)SceneManager::GetCurrentScene()->FindObject("World");
-	world->UpdateEnemiesCount(1);
+	
 }
 
 void InsectEnemy::setLevel(int l)
@@ -75,6 +60,23 @@ void InsectEnemy::Render()
 void InsectEnemy::OnCreated()
 {
 	Entity::OnCreated();
+
+	setLevel(max(rand() % 3 - 1 + difficulty, 1));
+	if (getLevel() <= 0)
+		setLevel(1);
+
+	SetSize(Block::TILE_SIZE * 1.5, Block::TILE_SIZE * 1.5);
+
+	int type = rand() % 2;
+
+	SetTexture(ResourceManager::GetTexture("InsectEnemy"), 1, 1, 0, false);
+
+	setSpeed(75.0);
+
+	currentReloadTime = attackReloadTime;
+
+	World* world = (World*)SceneManager::GetCurrentScene()->FindObject("World");
+	world->UpdateEnemiesCount(1);
 }
 
 void InsectEnemy::Move(double x, double y)

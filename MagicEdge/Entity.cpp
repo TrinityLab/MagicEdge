@@ -3,8 +3,7 @@
 
 Entity::Entity(string name) : AnimatedObject(name)
 {
-	setExp(0);
-	setLevel(1);
+	
 }
 
 void Entity::setExp(int E)
@@ -85,7 +84,8 @@ double Entity::getSpeed()
 
 void Entity::OnCreated()
 {
-
+	setExp(0);
+	setLevel(1);
 }
 
 void Entity::OnDestroyd()

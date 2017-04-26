@@ -10,4 +10,5 @@ public:
 	virtual void setLevel(int l) override;
 	virtual void Move(double x, double y) override;
 	virtual int GetScore() override;
+	virtual void OnCreated() override;
 };

@@ -4,8 +4,6 @@
 #include "ScoreTable.h"
 #include <Windowsx.h>
 
-LRESULT DlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-
 MainMenu::MainMenu() : Scene()
 {
 

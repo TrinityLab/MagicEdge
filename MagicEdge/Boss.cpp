@@ -3,10 +3,7 @@
 
 Boss::Boss(string name) : OrkEnemy(name)
 {
-	SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0, false);
-	SetSize(Block::TILE_SIZE * 2, Block::TILE_SIZE * 2);
-
-	setLevel(max(rand() % 3 - 1 + difficulty, 1));
+	
 }
 
 void Boss::setLevel(int l)
@@ -50,4 +47,14 @@ void Boss::Move(double x, double y)
 	{
 		SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0, false);
 	}
+}
+
+void Boss::OnCreated()
+{
+	OrkEnemy::OnCreated();
+
+	SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0, false);
+	SetSize(Block::TILE_SIZE * 2, Block::TILE_SIZE * 2);
+
+	setLevel(max(rand() % 3 - 1 + difficulty, 1));
 }

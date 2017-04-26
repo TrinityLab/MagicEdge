@@ -26,15 +26,15 @@
     <Filter Include="Other">
       <UniqueIdentifier>{ef805678-7656-4bb0-a397-f9caae4d8479}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{e53d8f47-b9dd-42cb-9056-9f44c4420ce3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedObject.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Application.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
@@ -136,9 +136,6 @@
     <ClCompile Include="ScoreTable.cpp">
       <Filter>Other</Filter>
     </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="MagicEdge.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="World.cpp">
@@ -171,15 +168,24 @@
     <ClCompile Include="Desert.cpp">
       <Filter>Objects\Worlds</Filter>
     </ClCompile>
+    <ClCompile Include="LoginScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TextField.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="AnimatedObject.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
@@ -284,9 +290,6 @@
     <ClInclude Include="Utility.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="StandardInc.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -324,6 +327,18 @@
     </ClInclude>
     <ClInclude Include="Desert.h">
       <Filter>Objects\Worlds</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextField.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

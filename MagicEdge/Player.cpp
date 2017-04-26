@@ -12,13 +12,6 @@ Player::Player(string name) : Entity(name)
 
 void Player::OnCreated()
 {
-	Entity::OnCreated();
-	SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0);
-
-	setSpeed(200);
-
-	SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
-
 	name = new Text("PlayerName", "Visitor");
 	name->SetText(ScoreTable::userName.c_str());
 	name->SetOrigin(0, 0);
@@ -40,6 +33,13 @@ void Player::OnCreated()
 	score->SetText("Score: 0");
 	score->SetFontSize(30);
 	ScoreTable::SetScore(0);
+
+	Entity::OnCreated();
+	SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0);
+
+	setSpeed(200);
+
+	SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
 }
 
 void Player::OnDestroyd()

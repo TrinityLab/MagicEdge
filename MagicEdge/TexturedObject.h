@@ -1,7 +1,7 @@
 #pragma once
 
+#include "StandardInc.h"
 #include "Object.h"
-#include "SDL.h"
 
 class TexturedObject : public Object
 {
