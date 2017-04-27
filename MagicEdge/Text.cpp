@@ -26,6 +26,8 @@ void Text::SetText(string text, SDL_Color color)
 	SDL_QueryTexture(tex, NULL, NULL, &width, &height);
 
 	SetSrcRect({ 0, 0, width, height });
+
+	SetFontSize(fontSize);
 }
 
 void Text::SetFont(string fontName)
@@ -56,6 +58,8 @@ void Text::SetSize(double x, double y)
 
 void Text::SetFontSize(int size)
 {
+	fontSize = size;
+
 	int width, height;
 
 	SDL_QueryTexture(GetTexture(), NULL, NULL, &width, &height);

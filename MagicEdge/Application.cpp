@@ -39,15 +39,19 @@ int Application::Run(char* title, UINT x, UINT y, UINT width, UINT height, SDL_W
 
 	while (!quit)
 	{
+		Keyboard::Update();
+		Mouse::Update();
+
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_EventType::SDL_QUIT)
 				return 0;
+			if(event.type == SDL_EventType::SDL_KEYDOWN)
+			{
+				Keyboard::textInput[event.key.keysym.scancode] = 1;
+			}
 		}
-
-		Keyboard::Update();
-		Mouse::Update();
 
 		Update();
 		Render();
@@ -115,6 +119,7 @@ void Application::LoadResources()
 	ResourceManager::LoadTexture("TableHead", "Texture/tablehead.png");
 	ResourceManager::LoadTexture("TableRow", "Texture/tablerow.png");
 	ResourceManager::LoadTexture("Portal", "Texture/portal.png");
+	ResourceManager::LoadTexture("TextField", "Texture/TestTextField.png");
 	ResourceManager::LoadMusic("Music", "Music/BackMusic.wav");
 	ResourceManager::LoadFont("Visitor", "Fonts/visitor1.ttf", 24);
 }
