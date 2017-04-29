@@ -4,6 +4,7 @@
 #include "OrkEnemy.h"
 #include "Boss.h"
 #include "DifficultyInfo.h"
+#include "AudioSystem.h"
 
 World::World(string name) : Object(name)
 {
@@ -24,6 +25,16 @@ World::World(string name) : Object(name)
 void World::Generate()
 {
 
+}
+
+void World::OnCreated()
+{
+	AudioSystem::Play(ResourceManager::GetAudio("BackMusic"), -1, "BackMusic");
+}
+
+void World::OnDestroyd()
+{
+	AudioSystem::Stop("BackMusic");
 }
 
 void World::Update()

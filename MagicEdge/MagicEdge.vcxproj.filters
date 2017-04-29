@@ -180,6 +180,9 @@
     <ClCompile Include="TextField.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="AudioSystem.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -309,7 +312,6 @@
     <ClInclude Include="OrkEnemy.h">
       <Filter>Objects\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="SDL_mixer.h" />
     <ClInclude Include="Trees2.h">
       <Filter>Objects\Blocks</Filter>
     </ClInclude>
@@ -340,11 +342,11 @@
     <ClInclude Include="TextField.h">
       <Filter>GUI</Filter>
     </ClInclude>
+    <ClInclude Include="AudioSystem.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="SDL2_mixer.lib" />
   </ItemGroup>
 </Project>

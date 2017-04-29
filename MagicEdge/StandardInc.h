@@ -1,7 +1,10 @@
 #pragma once
 
+#include "FMOD/inc/fmod.hpp"
+
+#pragma comment(lib, "FMOD/lib/fmod64_vc.lib")
+
 #include "SDL.h"
-#include "SDL_mixer.h"
 #include "SDL_image.h"
 #include "SDL_ttf.h"
 

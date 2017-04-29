@@ -118,10 +118,10 @@ void Dungeon::Generate()
 
 void Dungeon::OnCreated()
 {
-
+	Overworld::OnCreated();
 }
 
 void Dungeon::OnDestroyd()
 {
-
+	Overworld::OnDestroyd();
 }

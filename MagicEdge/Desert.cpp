@@ -128,10 +128,10 @@ void Desert::Generate()
 
 void Desert::OnCreated()
 {
-
+	Overworld::OnCreated();
 }
 
 void Desert::OnDestroyd()
 {
-
+	Overworld::OnDestroyd();
 }

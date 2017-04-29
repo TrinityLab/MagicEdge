@@ -9,7 +9,7 @@ protected:
 	static list<Object*> objects;
 	static list<Object*> objectsToCreate;
 	string name;
-	bool active;
+	bool destroy;
 
 	virtual void Render() = 0;
 	virtual void Update() = 0;
@@ -26,7 +26,6 @@ protected:
 private:
 	static Object* FindObject(string name);
 	static void AddObject(Object* object);
-	static void DeleteObject(Object* object);
 	static void DeleteFromList(Object* object);
 	static void AddPreparedObjects();
 public:
@@ -35,8 +34,6 @@ public:
 	Object(std::string name);
 	~Object();
 	std::string GetObjectName();
-
-	bool IsActive();
 
 	virtual void SetPosition(double x, double y);
 	virtual void SetSize(double x, double y);

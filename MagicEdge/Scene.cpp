@@ -12,16 +12,22 @@ void Scene::Update()
 
 	for (Object* obj : Object::objects)
 	{
-		if (obj->IsActive())
+		if (!obj->destroy)
 			obj->Update();
 	}
 
-	for (auto iter = Object::objects.begin(); iter != Object::objects.end(); iter++)
+	for (auto iter = Object::objects.begin(); iter != Object::objects.end();)
 	{
-		if (!(*iter)->IsActive())
+		if ((*iter)->destroy)
 		{
-			Object::DeleteObject(*iter);
-			break;
+			auto iter2 = iter;
+			iter++;
+			(*iter2)->OnDestroyd();
+			delete (*iter2);
+		}
+		else
+		{
+			iter++;
 		}
 	}
 }
@@ -33,7 +39,7 @@ void Scene::Render()
 
 	for (Object* obj : Object::objects)
 	{
-		if(obj->IsActive())
+		if(!obj->destroy)
 			obj->Render();
 	}
 
@@ -60,7 +66,7 @@ Object** Scene::GetObjectsOfName(string name, int* count)
 	*count = 0;
 	for (auto iter = Object::objects.begin(); iter != Object::objects.end(); iter++)
 	{
-		if (!(*iter)->IsActive())
+		if ((*iter)->destroy)
 			continue;
 
 		Object* obj = *iter;
@@ -72,7 +78,7 @@ Object** Scene::GetObjectsOfName(string name, int* count)
 	int index = 0;
 	for (auto iter = Object::objects.begin(); iter != Object::objects.end(); iter++)
 	{
-		if (!(*iter)->IsActive())
+		if ((*iter)->destroy)
 			continue;
 
 		Object* obj = *iter;
