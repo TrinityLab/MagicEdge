@@ -14,6 +14,7 @@ Button::Button(string name, string normalTex, string hoverTex, string pressedTex
 void Button::Update()
 {
 	isPressed = false;
+	isHover = false;
 
 	SetTexture(ResourceManager::GetTexture(Normal));
 
@@ -22,6 +23,7 @@ void Button::Update()
 		Mouse::GetMouseY() <= GetYPosition() + GetYSize() / 2 && Mouse::GetMouseY() >= GetYPosition() - GetYSize() / 2)
 	{
 		SetTexture(ResourceManager::GetTexture(Hover));
+		isHover = true;
 
 		if (Mouse::IsMouseUp(SDL_BUTTON_LEFT))
 		{
@@ -34,6 +36,11 @@ void Button::Update()
 bool Button::IsPressed()
 {
 	return isPressed;
+}
+
+bool Button::IsHover()
+{
+	return isHover;
 }
 
 void Button::SetText(string txt, SDL_Color color)

@@ -11,12 +11,14 @@ protected:
 	std::string Hover;
 	std::string Pressed;
 	bool isPressed = false;
+	bool isHover = false;
 
 	Text* text;
 public:
 	Button(string name, string normalTex, string hoverTex, string pressedTex);
 	void Update() override;
 	bool IsPressed();
+	bool IsHover();
 	void SetText(string text, SDL_Color color = {0, 0, 0, 255});
 	virtual void SetPosition(double x, double y) override;
 	virtual void SetSize(double x, double y) override;

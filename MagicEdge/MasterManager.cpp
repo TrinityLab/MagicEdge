@@ -1,6 +1,7 @@
 #include "MasterManager.h"
 #include "MainMenu.h"
 #include "ScoreTableScene.h"
+#include "LoginScene.h"
 
 MasterManager::MasterManager() : SceneManager()
 {
@@ -10,6 +11,7 @@ MasterManager::MasterManager() : SceneManager()
 	AddScene(new DesertScene());
 	AddScene(new BossLocationScene());
 	AddScene(new ScoreTableScene());
+	AddScene(new LoginScene());
 
-	OpenScene("MainMenu");
+	OpenScene("LoginScene");
 }

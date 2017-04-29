@@ -7,6 +7,7 @@ class Text : public TexturedObject
 protected:
 	string text;
 	string font;
+	float fontSize;
 	void SetSizeForce(double w, double h);
 public:
 	Text(string name, string font, string text = "");
