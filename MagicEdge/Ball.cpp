@@ -9,7 +9,7 @@
 Ball::Ball(string name, Entity* owner) : AnimatedObject(name)
 {
 	this->owner = owner;
-	time = 10.0;
+	time = 5.0f;
 }
 
 void Ball::setV(double VX, double VY)

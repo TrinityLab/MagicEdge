@@ -4,8 +4,7 @@
 
 map<string, SDL_Texture*> ResourceManager::textures;
 map<string, TTF_Font*> ResourceManager::fonts;
-map<string, Mix_Chunk*> ResourceManager::wavs;
-map<string, Mix_Music*> ResourceManager::musics;
+map<string, FMOD::Sound*> ResourceManager::audios;
 
 int main(int argv, char** argc)
 {

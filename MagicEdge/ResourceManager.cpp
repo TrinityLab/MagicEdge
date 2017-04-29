@@ -1,5 +1,6 @@
 #include "ResourceManager.h"
 #include "Screen.h"
+#include "AudioSystem.h"
 
 bool ResourceManager::LoadTexture(string name, string fileName)
 {
@@ -25,26 +26,13 @@ bool ResourceManager::LoadFont(string name, string fileName, int ptSize)
 	return true;
 }
 
-bool ResourceManager::LoadWAV(string name, string fileName)
+bool ResourceManager::LoadAudio(string name, string fileName)
 {
-	Mix_Chunk* chunk = Mix_LoadWAV(fileName.c_str());
+	FMOD::Sound* sound;
 
-	if (chunk == NULL)
-		return false;
+	AudioSystem::GetAudioSystem()->createSound(fileName.c_str(), FMOD_DEFAULT, NULL, &sound);
 
-	wavs.insert({ name, chunk });
-
-	return true;
-}
-
-bool ResourceManager::LoadMusic(string name, string fileName)
-{
-	Mix_Music* music = Mix_LoadMUS(fileName.c_str());
-
-	if (music == NULL)
-		return false;
-
-	musics.insert({ name, music });
+	audios.insert({ name, sound });
 
 	return true;
 }
@@ -69,21 +57,11 @@ TTF_Font* ResourceManager::GetFont(string name)
 	return iter->second;
 }
 
-Mix_Chunk* ResourceManager::GetChunk(string name)
+FMOD::Sound* ResourceManager::GetAudio(string name)
 {
-	auto iter = wavs.find(name);
+	auto iter = audios.find(name);
 
-	if (iter == wavs.end())
-		return NULL;
-
-	return iter->second;
-}
-
-Mix_Music* ResourceManager::GetMusic(string name)
-{
-	auto iter = musics.find(name);
-
-	if (iter == musics.end())
+	if (iter == audios.end())
 		return NULL;
 
 	return iter->second;
@@ -101,18 +79,12 @@ void ResourceManager::Clear()
 		TTF_CloseFont(f.second);
 	}
 
-	for (auto w : wavs)
+	for (auto audio : audios)
 	{
-		Mix_FreeChunk(w.second);
-	}
-
-	for (auto m : musics)
-	{
-		Mix_FreeMusic(m.second);
+		audio.second->release();
 	}
 
 	textures.clear();
 	fonts.clear();
-	wavs.clear();
-	musics.clear();
+	audios.clear();
 }

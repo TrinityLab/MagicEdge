@@ -16,8 +16,8 @@ public:
 	static const int WIDTH = 101;
 	static const int HEIGHT = 101;
 
-	virtual void OnCreated() = 0;
-	virtual void OnDestroyd() = 0;
+	virtual void OnCreated();
+	virtual void OnDestroyd();
 
 	void UpdateEnemiesCount(int add);
 

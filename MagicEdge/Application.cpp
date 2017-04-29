@@ -6,6 +6,7 @@
 #include "Mouse.h"
 #include "ResourceManager.h"
 #include "MasterManager.h"
+#include "AudioSystem.h"
 
 bool Application::quit;
 
@@ -25,6 +26,8 @@ int Application::Run(char* title, UINT x, UINT y, UINT width, UINT height, SDL_W
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
+
+	AudioSystem::Init();
 
 	window = SDL_CreateWindow(title, x, y, width, height, flags);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -46,7 +49,9 @@ int Application::Run(char* title, UINT x, UINT y, UINT width, UINT height, SDL_W
 		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_EventType::SDL_QUIT)
+			{
 				return 0;
+			}
 			if(event.type == SDL_EventType::SDL_KEYDOWN)
 			{
 				Keyboard::textInput[event.key.keysym.scancode] = 1;
@@ -59,7 +64,12 @@ int Application::Run(char* title, UINT x, UINT y, UINT width, UINT height, SDL_W
 
 	ResourceManager::Clear();
 
+	AudioSystem::Dispose();
+
+	TTF_Quit();
 	SDL_Quit();
+
+	return 0;
 }
 
 void Application::Update()
@@ -120,7 +130,7 @@ void Application::LoadResources()
 	ResourceManager::LoadTexture("TableRow", "Texture/tablerow.png");
 	ResourceManager::LoadTexture("Portal", "Texture/portal.png");
 	ResourceManager::LoadTexture("TextField", "Texture/TestTextField.png");
-	ResourceManager::LoadMusic("Music", "Music/BackMusic.wav");
+	ResourceManager::LoadAudio("BackMusic", "Audio/BackMusic.mp3");
 	ResourceManager::LoadFont("Visitor", "Fonts/visitor1.ttf", 24);
 }
 

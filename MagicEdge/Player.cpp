@@ -185,7 +185,7 @@ void Player::setLevel(int l)
 	level->SetText(temp);
 	level->SetFontSize(30);
 
-	if (l >= 2)
+	if (l >= 1)
 	{
 		Portal* portal = (Portal*)SceneManager::GetCurrentScene()->FindObject("Portal");
 		if(portal != NULL)

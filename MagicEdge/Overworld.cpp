@@ -147,10 +147,10 @@ void Overworld::Generate()
 
 void Overworld::OnCreated()
 {
-
+	World::OnCreated();
 }
 
 void Overworld::OnDestroyd()
 {
-
+	World::OnDestroyd();
 }

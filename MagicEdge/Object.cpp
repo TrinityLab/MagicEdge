@@ -17,7 +17,7 @@ Object::Object(string name)
 
 	objectsToCreate.push_back(this);
 
-	active = true;
+	destroy = false;
 }
 
 Object::~Object()
@@ -32,7 +32,7 @@ string Object::GetObjectName()
 
 void Object::Destroy(Object* obj)
 {
-	obj->active = false;
+	obj->destroy = true;
 }
 
 Object* Object::FindObject(string name)
@@ -50,11 +50,6 @@ void Object::AddObject(Object* object)
 {
 	objects.push_back(object);
 	object->OnCreated();
-}
-
-void Object::DeleteObject(Object* object)
-{
-	delete object;
 }
 
 void Object::DeleteFromList(Object* object)
@@ -91,6 +86,7 @@ void Object::ClearObjects()
 
 	for (i = 0; i < objects.size(); i++)
 	{
+		temp[i]->OnDestroyd();
 		delete temp[i];
 	}
 
@@ -203,11 +199,6 @@ void Object::AddPreparedObjects()
 	}
 
 	objectsToCreate.clear();
-}
-
-bool Object::IsActive()
-{
-	return active;
 }
 
 bool Object::ContainsObject(list<Object*>& l, Object* obj)
