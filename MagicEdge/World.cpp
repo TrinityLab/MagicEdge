@@ -42,58 +42,61 @@ void World::Update()
 		}
 	}
 
-	if (enemiesCount < 150 && rand() % 10000 < 100 * difficulty)
+	if (SceneManager::GetCurrentScene()->GetSceneName() != "DesertScene")
 	{
-		int x;
-		int y;
-
-		while (true)
+		if (enemiesCount < 150 && rand() % 10000 < 100 * difficulty)
 		{
-			x = rand() % WIDTH;
-			y = rand() % HEIGHT;
+			int x;
+			int y;
 
-			if (ObstacleMap::IsObstacle(x, y))
-				continue;
-
-			Object* player = SceneManager::GetCurrentScene()->FindObject("Player");
-			if (player == NULL)
-				return;
-
-			int dist = (int)((x - player->GetXPosition() / Block::TILE_SIZE) * (x - player->GetXPosition() / Block::TILE_SIZE) +
-				(y - player->GetYPosition() / Block::TILE_SIZE) * (y - player->GetYPosition() / Block::TILE_SIZE));
-
-			if (dist <= 20)
+			while (true)
 			{
-				continue;
+				x = rand() % WIDTH;
+				y = rand() % HEIGHT;
+
+				if (ObstacleMap::IsObstacle(x, y))
+					continue;
+
+				Object* player = SceneManager::GetCurrentScene()->FindObject("Player");
+				if (player == NULL)
+					return;
+
+				int dist = (int)((x - player->GetXPosition() / Block::TILE_SIZE) * (x - player->GetXPosition() / Block::TILE_SIZE) +
+					(y - player->GetYPosition() / Block::TILE_SIZE) * (y - player->GetYPosition() / Block::TILE_SIZE));
+
+				if (dist <= 20)
+				{
+					continue;
+				}
+
+				break;
 			}
 
-			break;
+			if (rand() % 100 > 20)
+				(new InsectEnemy("Enemy"))->SetPosition(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
+			else
+				(new OrkEnemy("Enemy"))->SetPosition(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
 		}
-
-		if(rand() % 100 > 20)
-			(new InsectEnemy("Enemy"))->SetPosition(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
-		else
-			(new OrkEnemy("Enemy"))->SetPosition(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
 	}
 
-	if (rand() % 1000000 < 10)
-	{
-		int x, y;
-		while (true)
-		{
-			x = rand() % WIDTH;
-			y = rand() % HEIGHT;
+	//if (rand() % 1000000 < 10)
+	//{
+	//	int x, y;
+	//	while (true)
+	//	{
+	//		x = rand() % WIDTH;
+	//		y = rand() % HEIGHT;
 
-			if (ObstacleMap::IsObstacle(x, y))
-			{
-				continue;
-			}
+	//		if (ObstacleMap::IsObstacle(x, y))
+	//		{
+	//			continue;
+	//		}
 
-			break;
-		}
+	//		break;
+	//	}
 
-		(new Boss("Enemy"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
-	}
+	//	(new Boss("Enemy"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
+	//}
 }
 
 void World::Render()

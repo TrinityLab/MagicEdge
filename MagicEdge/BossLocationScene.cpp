@@ -1,17 +1,17 @@
-#include "DesertScene.h"
-#include "Desert.h"
+#include "BossLocationScene.h"
+#include "BossLocation.h"
 #include "Player.h"
 #include "ScoreTable.h"
 #include "Boss.h"
 
-string DesertScene::GetSceneName()
+string BossLocationScene::GetSceneName()
 {
-	return "DesertScene";
+	return "BossLocationScene";
 }
 
-void DesertScene::OnOpened()
+void BossLocationScene::OnOpened()
 {
-	Desert* world = new Desert("World");
+	BossLocation* world = new BossLocation("World");
 	world->Generate();
 
 	Player* player = new Player("Player");
@@ -44,10 +44,10 @@ void DesertScene::OnOpened()
 	}
 
 	(new Boss("Enemy"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
-	
+
 }
 
-void DesertScene::OnClosed()
+void BossLocationScene::OnClosed()
 {
 	Scene::OnClosed();
 

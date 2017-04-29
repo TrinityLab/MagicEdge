@@ -23,7 +23,7 @@ void Portal::Update()
 
 	double dist = sqrt(dirX * dirX + dirY * dirY);
 	
-	if (player->getLevel() >= 2)
+	if (player->getLevel() >= 1)
 	{
 		if (dist <= Block::TILE_SIZE)
 		{

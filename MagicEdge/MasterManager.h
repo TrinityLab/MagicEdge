@@ -5,6 +5,7 @@
 #include "OverWorldScene.h"
 #include "DungeonScene.h"
 #include "DesertScene.h"
+#include "BossLocationScene.h"
 
 class MasterManager : public SceneManager
 {

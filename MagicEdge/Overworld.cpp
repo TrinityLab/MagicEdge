@@ -81,6 +81,12 @@ void Overworld::Generate()
 				}
 			}
 
+			if (((i - centerX) * (i - centerX) + (j - centerY) * (j - centerY)) == r * r)
+			{
+				SetBlock(i, j, 1, new Tree(i, j));
+				
+			}
+
 			if (rand() % 1000 <= 10 && ((i - centerX) * (i - centerX) + (j - centerY) * (j - centerY) - 15 > r*r))
 			{
 				for (int ix = i + 3; ix < i + 11; ix++)

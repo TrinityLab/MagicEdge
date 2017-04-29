@@ -8,6 +8,7 @@ MasterManager::MasterManager() : SceneManager()
 	AddScene(new OverWorldScene());
 	AddScene(new DungeonScene());
 	AddScene(new DesertScene());
+	AddScene(new BossLocationScene());
 	AddScene(new ScoreTableScene());
 
 	OpenScene("MainMenu");

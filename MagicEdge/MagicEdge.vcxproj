@@ -146,6 +146,8 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Blood.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossLocationScene.cpp" />
+    <ClCompile Include="BossLocation.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Desert.cpp" />
@@ -199,6 +201,8 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="Blood.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossLocation.h" />
+    <ClInclude Include="BossLocationScene.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Desert.h" />

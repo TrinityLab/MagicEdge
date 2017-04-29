@@ -180,6 +180,12 @@
     <ClCompile Include="TextField.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="BossLocation.cpp">
+      <Filter>Objects\Worlds</Filter>
+    </ClCompile>
+    <ClCompile Include="BossLocationScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -339,6 +345,12 @@
     </ClInclude>
     <ClInclude Include="TextField.h">
       <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BossLocationScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BossLocation.h">
+      <Filter>Objects\Worlds</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
