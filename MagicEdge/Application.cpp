@@ -131,6 +131,7 @@ void Application::LoadResources()
 	ResourceManager::LoadTexture("Portal", "Texture/portal.png");
 	ResourceManager::LoadTexture("TextField", "Texture/TestTextField.png");
 	ResourceManager::LoadAudio("BackMusic", "Audio/BackMusic.mp3");
+	ResourceManager::LoadAudio("EnemyDamageSound", "Audio/EnemyDamageSound.wav");
 	ResourceManager::LoadFont("Visitor", "Fonts/visitor1.ttf", 24);
 }
 

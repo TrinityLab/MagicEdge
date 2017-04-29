@@ -5,6 +5,7 @@
 #include "SceneManager.h"
 #include "Blood.h"
 #include "ScoreTable.h"
+#include "AudioSystem.h"
 
 Ball::Ball(string name, Entity* owner) : AnimatedObject(name)
 {
@@ -82,6 +83,8 @@ void Ball::Update()
 			objects[i]->setHealth(objects[i]->getHealth() - getDamage());
 			Object::Destroy(this);
 
+			AudioSystem::Play(ResourceManager::GetAudio("EnemyDamageSound"), 1);
+
 			if (objects[i]->getHealth() <= 0)
 			{
 				double dirX = player->GetXPosition() / Block::TILE_SIZE - World::WIDTH / 2;
@@ -95,8 +98,6 @@ void Ball::Update()
 				}
 				else
 				{
-					
-
 					player->setExp(player->getExp() + (int)(dist / 2));
 				}
 
