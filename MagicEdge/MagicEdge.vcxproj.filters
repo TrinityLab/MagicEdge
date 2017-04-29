@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{0fda9743-a515-4263-9102-7c1a49a8c4df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{0e89b767-f879-4fea-b957-36362f8d6c7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{d561578e-75ad-42b6-acf7-3b6ea7f81fe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Blocks">
+      <UniqueIdentifier>{bb8cc720-e490-4a83-844b-a7976c1eaff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Entities">
+      <UniqueIdentifier>{2de8de09-7c82-4b1a-97a5-5f7bf12c4a2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Worlds">
+      <UniqueIdentifier>{5290b005-2dc0-43b5-bd26-4d375fad1fb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{ef805678-7656-4bb0-a397-f9caae4d8479}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{e53d8f47-b9dd-42cb-9056-9f44c4420ce3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AnimatedObject.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="TexturedObject.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterManager.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="OverWorldScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreTableScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Altar.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball.cpp">
+      <Filter>Objects\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Dirt.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Grass.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Sand.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Stone.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Blood.cpp">
+      <Filter>Objects\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Objects\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Objects\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon.cpp">
+      <Filter>Objects\Worlds</Filter>
+    </ClCompile>
+    <ClCompile Include="Overworld.cpp">
+      <Filter>Objects\Worlds</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Objects\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="DifficultyInfo.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="ObstacleMap.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreTable.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicEdge.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="World.cpp">
+      <Filter>Objects\Worlds</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="InsectEnemy.cpp">
+      <Filter>Objects\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="OrkEnemy.cpp">
+      <Filter>Objects\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Trees2.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Tump.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Water.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="VoidBlock.cpp">
+      <Filter>Objects\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="DesertScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Desert.cpp">
+      <Filter>Objects\Worlds</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TextField.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSystem.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="BossLocation.cpp">
+      <Filter>Objects\Worlds</Filter>
+    </ClCompile>
+    <ClCompile Include="BossLocationScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedObject.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturedObject.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="OverWorldScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreTableScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Altar.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Ball.h">
+      <Filter>Objects\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Blood.h">
+      <Filter>Objects\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Objects\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Dirt.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Objects\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Objects\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Sand.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Stone.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon.h">
+      <Filter>Objects\Worlds</Filter>
+    </ClInclude>
+    <ClInclude Include="Overworld.h">
+      <Filter>Objects\Worlds</Filter>
+    </ClInclude>
+    <ClInclude Include="Grass.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="ObstacleMap.h">
+      <Filter>Objects\Worlds</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyInfo.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreTable.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardInc.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicEdge.h" />
+    <ClInclude Include="World.h">
+      <Filter>Objects\Worlds</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterManager.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="InsectEnemy.h">
+      <Filter>Objects\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="OrkEnemy.h">
+      <Filter>Objects\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Trees2.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Tump.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="VoidBlock.h">
+      <Filter>Objects\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="DesertScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Desert.h">
+      <Filter>Objects\Worlds</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextField.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSystem.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="BossLocation.h">
+      <Filter>Objects\Worlds</Filter>
+    </ClInclude>
+    <ClInclude Include="BossLocationScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
