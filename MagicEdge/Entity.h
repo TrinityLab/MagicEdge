@@ -1,9 +1,11 @@
 #pragma once
+
 #include "System.h"
 #include "Block.h"
 #include "ObstacleMap.h"
+#include "CircleTrigger.h"
 
-class Entity : public AnimatedObject
+class Entity : public AnimatedObject, CircleTrigger
 {
 protected:
 	int Mana;
@@ -22,6 +24,7 @@ public:
 	virtual void OnDestroyd() override;
 	virtual void setLevel(int L);
 	virtual void setExp(int E);
+	virtual void OnObjectCollide(IEventListener* other);
 	int getLevel();
 	int getExp();
 	int GetMaxMana();

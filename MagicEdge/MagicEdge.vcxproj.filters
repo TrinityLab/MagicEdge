@@ -189,6 +189,18 @@
     <ClCompile Include="BossLocationScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="MessageManager.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerChecker.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Trigger.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleTrigger.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -356,6 +368,18 @@
     </ClInclude>
     <ClInclude Include="BossLocationScene.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerChecker.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleTrigger.h">
+      <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

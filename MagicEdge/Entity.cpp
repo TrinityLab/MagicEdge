@@ -1,7 +1,7 @@
 #include "Entity.h"
 #include "Camera.h"
 
-Entity::Entity(string name) : AnimatedObject(name)
+Entity::Entity(string name) : AnimatedObject(name), CircleTrigger(Block::TILE_SIZE * 0.5f, &xPosition, &yPosition)
 {
 	
 }
@@ -121,4 +121,9 @@ int Entity::getDamage()
 void Entity::Render()
 {
 	AnimatedObject::Render();
+}
+
+void Entity::OnObjectCollide(IEventListener* other)
+{
+
 }

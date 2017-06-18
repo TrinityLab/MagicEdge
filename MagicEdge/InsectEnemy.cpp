@@ -26,8 +26,8 @@ void InsectEnemy::Update()
 	if (player == NULL)
 		return;
 
-	double dirX = player->GetXPosition() + - GetXPosition();
-	double dirY = player->GetYPosition() + - GetYPosition();
+	double dirX = player->GetXPosition() - GetXPosition();
+	double dirY = player->GetYPosition() - GetYPosition();
 
 	double dist = sqrt(dirX * dirX + dirY * dirY);
 
