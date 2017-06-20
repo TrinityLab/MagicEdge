@@ -2,13 +2,15 @@
 #include "Mouse.h"
 #include "ResourceManager.h"
 
-Button::Button(string name, string normalTex, string hoverTex, string pressedTex) : TexturedObject(name)
+Button::Button(string name, string normalTex, string hoverTex, string pressedTex) : TexturedObject()
 {
 	Normal = normalTex;
 	Hover = hoverTex;
 	Pressed = pressedTex;
 
 	this->text = new Text(name + "_Text", "Visitor");
+
+	AddTag(name);
 }
 
 void Button::Update()

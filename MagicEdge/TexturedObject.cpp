@@ -3,7 +3,7 @@
 #include "Screen.h"
 #include "Camera.h"
 
-TexturedObject::TexturedObject(string name) : Object(name)
+TexturedObject::TexturedObject() : Object()
 {
 	texture = NULL;
 }

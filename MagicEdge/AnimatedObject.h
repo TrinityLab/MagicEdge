@@ -20,7 +20,7 @@ protected:
 
 	virtual void Update() override;
 public:
-	AnimatedObject(std::string name);
+	AnimatedObject();
 	void SetTexture(SDL_Texture* texture, int framesPerWidth, int framesPerHeight, int FPS, bool looped = false);
 	void Pause();
 	void Play();

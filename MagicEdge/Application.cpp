@@ -40,6 +40,10 @@ int Application::Run(char* title, UINT x, UINT y, UINT width, UINT height, SDL_W
 	this->LoadResources();
 	this->LoadSceneManager();
 
+#if defined (DEBUG) || defined(_DEBUG)
+	OutputDebugString(L"Debug started");
+#endif
+
 	while (!quit)
 	{
 		Keyboard::Update();

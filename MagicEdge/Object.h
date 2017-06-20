@@ -8,7 +8,7 @@ class Object
 protected:
 	static list<Object*> objects;
 	static list<Object*> objectsToCreate;
-	string name;
+	vector<string> tags;
 	bool destroy;
 
 	virtual void Render() = 0;
@@ -24,16 +24,18 @@ protected:
 	double xScale, yScale;
 	double xOrigin, yOrigin;
 private:
-	static Object* FindObject(string name);
+	static Object* FindObjectWithTag(string tag);
 	static void AddObject(Object* object);
 	static void DeleteFromList(Object* object);
 	static void AddPreparedObjects();
 public:
 	static void ClearObjects();
 	static void Destroy(Object* obj);
-	Object(std::string name);
-	~Object();
-	std::string GetObjectName();
+	Object();
+	virtual ~Object();
+
+	bool HasTag(string tag);
+	void AddTag(string tag);
 
 	virtual void SetPosition(double x, double y);
 	virtual void SetSize(double x, double y);

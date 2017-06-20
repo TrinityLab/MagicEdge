@@ -3,12 +3,14 @@
 #include "ResourceManager.h"
 #include "Screen.h"
 
-Text::Text(string name, string font, string text) : TexturedObject(name)
+Text::Text(string name, string font, string text) : TexturedObject()
 {
 	SetFont(font);
 	SetText(text, {0, 0, 0, 255});
 
 	useCamera = false;
+
+	AddTag(name);
 }
 
 void Text::SetText(string text, SDL_Color color)

@@ -19,7 +19,7 @@ void Altar::Update()
 	{
 		if (rand() % 1000 < 100)
 		{
-			Player* player = (Player*)SceneManager::GetCurrentScene()->FindObject("Player");
+			Player* player = (Player*)SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
 			if (player == NULL)
 				return;
 

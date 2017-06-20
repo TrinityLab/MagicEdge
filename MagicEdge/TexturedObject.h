@@ -14,7 +14,7 @@ protected:
 	virtual void OnDestroyd() override;
 	virtual void Update() override;
 public:
-	TexturedObject(string name);
+	TexturedObject();
 	void SetTexture(SDL_Texture* texture);
 	void SetSrcRect(SDL_Rect srcRect);
 	SDL_Rect GetSrcRect();

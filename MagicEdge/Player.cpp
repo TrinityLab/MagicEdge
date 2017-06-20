@@ -7,7 +7,7 @@
 
 Player::Player(string name) : Entity(name)
 {
-	
+	AddTag(name);
 }
 
 void Player::OnCreated()
@@ -77,7 +77,7 @@ void Player::Update()
 		movement = true;
 	}
 
-	if(Mouse::IsMouseDown(SDL_BUTTON_LEFT))
+	if (Mouse::IsMouseDown(SDL_BUTTON_LEFT))
 	{
 		double x = Mouse::GetMouseX() + Camera::GetXOffset();
 		double y = Mouse::GetMouseY() + Camera::GetYOffset();
@@ -187,7 +187,7 @@ void Player::setLevel(int l)
 
 	if (l >= 1)
 	{
-		Portal* portal = (Portal*)SceneManager::GetCurrentScene()->FindObject("Portal");
+		Portal* portal = (Portal*)SceneManager::GetCurrentScene()->FindObjectWithTag("Portal");
 		if(portal != NULL)
 			portal->SetTexture(ResourceManager::GetTexture("Portal"), 3, 1, 8, true);
 	}
@@ -199,7 +199,8 @@ void Player::setHealth(int health)
 
 	if (health <= 0)
 	{
-		TexturedObject* background = new TexturedObject("BlueBack");
+		TexturedObject* background = new TexturedObject();
+		background->AddTag("BlueBack");
 		background->SetPosition(0, 0);
 		Camera::SetOffset(0, 0);
 		background->SetSize(Screen::GetWidth(), Screen::GetHeight());

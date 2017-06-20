@@ -1,7 +1,7 @@
 #include "AnimatedObject.h"
 #include "Timer.h"
 
-AnimatedObject::AnimatedObject(string name) : TexturedObject(name)
+AnimatedObject::AnimatedObject() : TexturedObject()
 {
 	currentFrameX = currentFrameY = 0;
 }

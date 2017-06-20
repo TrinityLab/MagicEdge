@@ -32,7 +32,8 @@ int FindMaxResult(vector<Result> results)
 
 void ScoreTableScene::OnOpened()
 {
-	TexturedObject* background = new TexturedObject("Background");
+	TexturedObject* background = new TexturedObject();
+	background->AddTag("Background");
 	background->SetOrigin(0, 0);
 	background->SetPosition(0, 0);
 	background->SetSize(Screen::GetWidth(), Screen::GetHeight());
@@ -87,7 +88,7 @@ void ScoreTableScene::Update()
 {
 	Scene::Update();
 
-	Button* exitButton = (Button*)SceneManager::GetCurrentScene()->FindObject("MainMenuButton");
+	Button* exitButton = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("MainMenuButton");
 	if (exitButton->IsPressed())
 	{
 		SceneManager::OpenScene("MainMenu");

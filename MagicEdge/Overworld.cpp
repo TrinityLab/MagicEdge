@@ -23,7 +23,7 @@ void Overworld::Generate()
 {
 	enemiesCount = 0;
 
-	srand(time(0));
+	srand((UINT)time(0));
 
 	for (int x = 0; x < WIDTH; x++)
 	{

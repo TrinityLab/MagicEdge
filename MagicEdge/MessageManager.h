@@ -10,7 +10,7 @@ interface IEventListener
 interface ICollideEventListener : IEventListener
 {
 public:
-	void OnObjectCollide(IEventListener* other);
+	virtual void OnObjectCollide(void* otherTrigger) {};
 };
 
 struct Message
@@ -22,7 +22,7 @@ struct Message
 		OnAttack
 	};
 
-	union MessageData
+	union
 	{
 		void* data_ptr;
 		int data_i;
@@ -32,23 +32,24 @@ struct Message
 		char data_c;
 	};
 
-	IEventListener* sender;
+	void* sender;
 	IEventListener* target;
 	MessageType type;
-	MessageData data;
 };
 
 class MessageManager
 {
 public:
-	static void SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, void* data);
-	static void SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, int data);
-	static void SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, float data);
-	static void SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, double data);
-	static void SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, long long int data);
-	static void SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, char data);
+	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, void* data);
+	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, int data);
+	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, float data);
+	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, double data);
+	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, long long int data);
+	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, char data);
 private:
 	static queue<shared_ptr<Message>> messages;
 	static void Update();
+
+	friend class Scene;
 };
 

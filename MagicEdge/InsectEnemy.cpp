@@ -7,7 +7,7 @@
 
 InsectEnemy::InsectEnemy(string name) : Entity(name)
 {
-	
+	AddTag(name);
 }
 
 void InsectEnemy::setLevel(int l)
@@ -22,7 +22,7 @@ void InsectEnemy::Update()
 {
 	Entity::Update();
 
-	Player* player = (Player*)SceneManager::GetCurrentScene()->FindObject("Player");
+	Player* player = (Player*)SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
 	if (player == NULL)
 		return;
 
@@ -41,11 +41,11 @@ void InsectEnemy::Update()
 	{
 		if (currentReloadTime <= 0.0)
 		{
-			Ball* ball = new Ball("Ball", this);
+			/*Ball* ball = new Ball("Ball", this);
 			ball->SetPosition(GetXPosition() + (dirX / dist * Block::TILE_SIZE / 2), GetYPosition() + (dirY / dist * Block::TILE_SIZE));
 			ball->setV(dirX / dist * 400.0, dirY / dist * 400.0);
 			ball->setDamage(getDamage());
-			ball->SetColor({ 255, 0, 0, 255 });
+			ball->SetColor({ 255, 0, 0, 255 });*/
 
 			currentReloadTime = attackReloadTime;
 		}
@@ -75,7 +75,7 @@ void InsectEnemy::OnCreated()
 
 	currentReloadTime = attackReloadTime;
 
-	World* world = (World*)SceneManager::GetCurrentScene()->FindObject("World");
+	World* world = (World*)SceneManager::GetCurrentScene()->FindObjectWithTag("World");
 	world->UpdateEnemiesCount(1);
 }
 

@@ -14,8 +14,6 @@ public:
 	Trigger(double* x, double* y);
 	virtual ~Trigger();
 
-	virtual bool IsTriggered(Trigger* obj) = 0;
-
 	double GetXPos();
 	double GetYPos();
 

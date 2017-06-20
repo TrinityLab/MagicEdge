@@ -6,7 +6,7 @@
 #include "DifficultyInfo.h"
 #include "AudioSystem.h"
 
-World::World(string name) : Object(name)
+World::World(string name) : Object()
 {
 	enemiesCount = 0;
 
@@ -20,6 +20,8 @@ World::World(string name) : Object(name)
 			}
 		}
 	}
+
+	AddTag(name);
 }
 
 void World::Generate()
@@ -68,7 +70,7 @@ void World::Update()
 				if (ObstacleMap::IsObstacle(x, y))
 					continue;
 
-				Object* player = SceneManager::GetCurrentScene()->FindObject("Player");
+				Object* player = SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
 				if (player == NULL)
 					return;
 

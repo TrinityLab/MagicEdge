@@ -2,9 +2,12 @@
 #include "Trigger.h"
 #include "TriggerChecker.h"
 
-Trigger::Trigger(double *x, double *y) : x(x), y(y)
+Trigger::Trigger(double *x, double *y)
 {
 	TriggerChecker::AddTrigger(this);
+
+	this->x = x;
+	this->y = y;
 }
 
 double Trigger::GetXPos()

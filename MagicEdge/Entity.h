@@ -5,7 +5,7 @@
 #include "ObstacleMap.h"
 #include "CircleTrigger.h"
 
-class Entity : public AnimatedObject, CircleTrigger
+class Entity : public AnimatedObject, public CircleTrigger
 {
 protected:
 	int Mana;
@@ -24,7 +24,7 @@ public:
 	virtual void OnDestroyd() override;
 	virtual void setLevel(int L);
 	virtual void setExp(int E);
-	virtual void OnObjectCollide(IEventListener* other);
+	virtual void OnObjectCollide(void* otherTrigger);
 	int getLevel();
 	int getExp();
 	int GetMaxMana();

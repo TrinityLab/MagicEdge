@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Screen.h"
+#include "TriggerChecker.h"
 
 Scene::Scene()
 {
@@ -15,6 +16,9 @@ void Scene::Update()
 		if (!obj->destroy)
 			obj->Update();
 	}
+
+	TriggerChecker::Update();
+	MessageManager::Update();
 
 	for (auto iter = Object::objects.begin(); iter != Object::objects.end();)
 	{
@@ -46,9 +50,9 @@ void Scene::Render()
 	SDL_RenderPresent(Screen::GetRenderer());
 }
 
-Object* Scene::FindObject(string name)
+Object* Scene::FindObjectWithTag(string tag)
 {
-	return Object::FindObject(name);
+	return Object::FindObjectWithTag(tag);
 }
 
 void Scene::OnOpened()
@@ -61,7 +65,7 @@ void Scene::OnClosed()
 	Object::ClearObjects();
 }
 
-Object** Scene::GetObjectsOfName(string name, int* count)
+Object** Scene::FindObjectsWithTag(string tag, int* count)
 {
 	*count = 0;
 	for (auto iter = Object::objects.begin(); iter != Object::objects.end(); iter++)
@@ -70,7 +74,7 @@ Object** Scene::GetObjectsOfName(string name, int* count)
 			continue;
 
 		Object* obj = *iter;
-		if (obj->GetObjectName() == name)
+		if (obj->HasTag(tag))
 			(*count)++;
 	}
 
@@ -82,7 +86,7 @@ Object** Scene::GetObjectsOfName(string name, int* count)
 			continue;
 
 		Object* obj = *iter;
-		if (obj->GetObjectName() == name)
+		if (obj->HasTag(tag))
 		{
 			objs[index] = obj;
 			index++;

@@ -15,7 +15,8 @@ void MainMenu::OnOpened()
 
 	ScoreTable::AddScore(0);
 
-	TexturedObject* background = new TexturedObject("Background");
+	TexturedObject* background = new TexturedObject();
+	background->AddTag("Background");
 	background->SetOrigin(0, 0);
 	background->SetPosition(0, 0);
 	background->SetSize(Screen::GetWidth(), Screen::GetHeight());
@@ -45,7 +46,7 @@ void MainMenu::Update()
 {
 	Scene::Update();
 
-	Button* startButton = (Button*)SceneManager::GetCurrentScene()->FindObject("StartButton");
+	Button* startButton = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("StartButton");
 	if (startButton->IsPressed())
 	{
 		/*if (rand() % 100 < 50)*/
@@ -54,13 +55,13 @@ void MainMenu::Update()
 			SceneManager::OpenScene("Overworld");
 	}
 
-	Button* scoresButton = (Button*)SceneManager::GetCurrentScene()->FindObject("ScoresButton");
+	Button* scoresButton = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("ScoresButton");
 	if (scoresButton->IsPressed())
 	{
 		SceneManager::OpenScene("ScoreTable");
 	}
 
-	Button* exitButton = (Button*)SceneManager::GetCurrentScene()->FindObject("ExitButton");
+	Button* exitButton = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("ExitButton");
 	if (exitButton->IsPressed())
 	{
 		Application::Quit();

@@ -85,7 +85,7 @@ void ScoreTable::SetScore(int score)
 {
 	ScoreTable::score = score;
 
-	Text* text = (Text*)SceneManager::GetCurrentScene()->FindObject("PlayerScore");
+	Text* text = (Text*)SceneManager::GetCurrentScene()->FindObjectWithTag("PlayerScore");
 	if (text == NULL)
 	{
 		return;

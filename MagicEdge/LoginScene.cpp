@@ -10,7 +10,8 @@ LoginScene::LoginScene() : Scene()
 
 void LoginScene::OnOpened()
 {
-	TexturedObject* background = new TexturedObject("Background");
+	TexturedObject* background = new TexturedObject();
+	background->AddTag("Background");
 	background->SetOrigin(0, 0);
 	background->SetPosition(0, 0);
 	background->SetSize(Screen::GetWidth(), Screen::GetHeight());
@@ -37,10 +38,10 @@ void LoginScene::Update()
 {
 	Scene::Update();
 
-	Button* loginOkButton = (Button*)SceneManager::GetCurrentScene()->FindObject("LoginOkButton");
+	Button* loginOkButton = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("LoginOkButton");
 	if (loginOkButton->IsPressed())
 	{
-		TextField* field = (TextField*)SceneManager::GetCurrentScene()->FindObject("UsernameField");
+		TextField* field = (TextField*)SceneManager::GetCurrentScene()->FindObjectWithTag("UsernameField");
 		ScoreTable::userName = field->GetText();
 
 		SceneManager::OpenScene("MainMenu");

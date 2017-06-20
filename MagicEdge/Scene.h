@@ -14,8 +14,8 @@ protected:
 public:
 	Scene();
 	virtual string GetSceneName() = 0;
-	Object* FindObject(string name);
-	Object** GetObjectsOfName(string name, int* count);
+	Object* FindObjectWithTag(string tag);
+	Object** FindObjectsWithTag(string tag, int* count);
 
 	friend class SceneManager;
 };

@@ -5,10 +5,8 @@
 list<Object*> Object::objects;
 list<Object*> Object::objectsToCreate;
 
-Object::Object(string name)
+Object::Object()
 {
-	this->name = name;
-
 	xPosition = yPosition = 0.0;
 	xSize = ySize = 0.0;
 	xScale = yScale = 1.0;
@@ -25,9 +23,23 @@ Object::~Object()
 	DeleteFromList(this);
 }
 
-string Object::GetObjectName()
+void Object::AddTag(string tag)
 {
-	return name;
+	tags.push_back(tag);
+}
+
+bool Object::HasTag(string tag)
+{
+	if (tags.size() == 0)
+		return false;
+
+	for (string& t : tags)
+	{
+		if (t == tag)
+			return true;
+	}
+
+	return false;
 }
 
 void Object::Destroy(Object* obj)
@@ -35,11 +47,11 @@ void Object::Destroy(Object* obj)
 	obj->destroy = true;
 }
 
-Object* Object::FindObject(string name)
+Object* Object::FindObjectWithTag(string tag)
 {
 	for (auto obj = objects.begin(); obj != objects.end(); obj++)
 	{
-		if ((*obj)->GetObjectName() == name)
+		if ((*obj)->HasTag(tag))
 			return *obj;
 	}
 

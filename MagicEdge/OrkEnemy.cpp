@@ -3,7 +3,7 @@
 
 OrkEnemy::OrkEnemy(string name) : InsectEnemy(name)
 {
-	
+	AddTag(name);
 }
 
 void OrkEnemy::Move(double x, double y)

@@ -2,7 +2,7 @@
 #include "System.h"
 #include "Entity.h"
 
-class Ball : public AnimatedObject
+class Ball : public AnimatedObject, public CircleTrigger
 {
 protected:
 	int Damage;
@@ -22,4 +22,6 @@ public:
 	virtual void OnDestroyd();
 	virtual void Update();
 	virtual void Render();
+
+	void OnObjectCollide(void* otherTrigger);
 };

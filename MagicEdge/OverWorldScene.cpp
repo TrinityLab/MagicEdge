@@ -48,7 +48,7 @@ void OverWorldScene::Update()
 {
 	Scene::Update();
 
-	Button* button = (Button*)SceneManager::GetCurrentScene()->FindObject("Exit");
+	Button* button = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("Exit");
 	if (button != NULL)
 	{
 		if (button->IsPressed())
@@ -57,7 +57,7 @@ void OverWorldScene::Update()
 		}
 	}
 
-	button = (Button*)SceneManager::GetCurrentScene()->FindObject("Exit2");
+	button = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("Exit2");
 	if (button != NULL)
 	{
 		if (button->IsPressed())

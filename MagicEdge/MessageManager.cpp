@@ -3,10 +3,10 @@
 
 queue<shared_ptr<Message>> MessageManager::messages;
 
-void MessageManager::SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, void* data)
+void MessageManager::SendMessage(void* from, IEventListener* target, Message::MessageType message, void* data)
 {
 	shared_ptr<Message> msg = make_shared<Message>();
-	msg->data.data_ptr = data;
+	msg->data_ptr = data;
 	msg->sender = from;
 	msg->target = target;
 	msg->type = message;
@@ -14,10 +14,10 @@ void MessageManager::SendMessage(IEventListener* from, IEventListener* target, M
 	messages.push(msg);
 }
 
-void MessageManager::SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, int data)
+void MessageManager::SendMessage(void* from, IEventListener* target, Message::MessageType message, int data)
 {
 	shared_ptr<Message> msg = make_shared<Message>();
-	msg->data.data_i = data;
+	msg->data_i = data;
 	msg->sender = from;
 	msg->target = target;
 	msg->type = message;
@@ -25,10 +25,10 @@ void MessageManager::SendMessage(IEventListener* from, IEventListener* target, M
 	messages.push(msg);
 }
 
-void MessageManager::SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, long long int data)
+void MessageManager::SendMessage(void* from, IEventListener* target, Message::MessageType message, long long int data)
 {
 	shared_ptr<Message> msg = make_shared<Message>();
-	msg->data.data_l = data;
+	msg->data_l = data;
 	msg->sender = from;
 	msg->target = target;
 	msg->type = message;
@@ -36,10 +36,10 @@ void MessageManager::SendMessage(IEventListener* from, IEventListener* target, M
 	messages.push(msg);
 }
 
-void MessageManager::SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, float data)
+void MessageManager::SendMessage(void* from, IEventListener* target, Message::MessageType message, float data)
 {
 	shared_ptr<Message> msg = make_shared<Message>();
-	msg->data.data_f = data;
+	msg->data_f = data;
 	msg->sender = from;
 	msg->target = target;
 	msg->type = message;
@@ -47,10 +47,10 @@ void MessageManager::SendMessage(IEventListener* from, IEventListener* target, M
 	messages.push(msg);
 }
 
-void MessageManager::SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, double data)
+void MessageManager::SendMessage(void* from, IEventListener* target, Message::MessageType message, double data)
 {
 	shared_ptr<Message> msg = make_shared<Message>();
-	msg->data.data_d = data;
+	msg->data_d = data;
 	msg->sender = from;
 	msg->target = target;
 	msg->type = message;
@@ -58,10 +58,10 @@ void MessageManager::SendMessage(IEventListener* from, IEventListener* target, M
 	messages.push(msg);
 }
 
-void MessageManager::SendMessage(IEventListener* from, IEventListener* target, Message::MessageType message, char data)
+void MessageManager::SendMessage(void* from, IEventListener* target, Message::MessageType message, char data)
 {
 	shared_ptr<Message> msg = make_shared<Message>();
-	msg->data.data_c = data;
+	msg->data_c = data;
 	msg->sender = from;
 	msg->target = target;
 	msg->type = message;
@@ -78,7 +78,7 @@ void MessageManager::Update()
 		switch (msg->type)
 		{
 		case Message::OnCollide:
-			((ICollideEventListener*)msg->sender)->OnObjectCollide(msg->target);
+			((ICollideEventListener*)msg->target)->OnObjectCollide(msg->data_ptr);
 			break;
 		case Message::OnTakeDamage:
 			break;

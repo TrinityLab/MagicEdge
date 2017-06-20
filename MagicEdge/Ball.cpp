@@ -7,10 +7,13 @@
 #include "ScoreTable.h"
 #include "AudioSystem.h"
 
-Ball::Ball(string name, Entity* owner) : AnimatedObject(name)
+Ball::Ball(string name, Entity* owner) :
+	AnimatedObject(), CircleTrigger(Block::TILE_SIZE * 0.5f, &xPosition, &yPosition)
 {
 	this->owner = owner;
 	time = 5.0f;
+
+	AddTag(name);
 }
 
 void Ball::setV(double VX, double VY)
@@ -53,7 +56,7 @@ void Ball::Update()
 
 	Move(vx*Timer::GetDeltaTime(), vy*Timer::GetDeltaTime());
 
-	Player* player = (Player*)SceneManager::GetCurrentScene()->FindObject("Player");
+	Player* player = (Player*)SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
 	if (player == NULL)
 		return;
 
@@ -70,7 +73,7 @@ void Ball::Update()
 	}
 
 	int count;
-	InsectEnemy** objects = (InsectEnemy**)SceneManager::GetCurrentScene()->GetObjectsOfName("Enemy", &count);
+	InsectEnemy** objects = (InsectEnemy**)SceneManager::GetCurrentScene()->FindObjectsWithTag("Enemy", &count);
 
 	for (int i = 0; i < count; i++)
 	{
@@ -102,7 +105,7 @@ void Ball::Update()
 				}
 
 				ScoreTable::AddScore(objects[i]->GetScore());
-				World* world = (World*)SceneManager::GetCurrentScene()->FindObject("World");
+				World* world = (World*)SceneManager::GetCurrentScene()->FindObjectWithTag("World");
 				world->UpdateEnemiesCount(-1);
 			}
 
@@ -128,4 +131,9 @@ void Ball::SetColor(SDL_Color color)
 SDL_Color Ball::GetColor()
 {
 	return color;
+}
+
+void Ball::OnObjectCollide(void* otherTrigger)
+{
+
 }

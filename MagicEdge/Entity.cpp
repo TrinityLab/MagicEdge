@@ -1,7 +1,7 @@
 #include "Entity.h"
 #include "Camera.h"
 
-Entity::Entity(string name) : AnimatedObject(name), CircleTrigger(Block::TILE_SIZE * 0.5f, &xPosition, &yPosition)
+Entity::Entity(string name) : AnimatedObject(), CircleTrigger(Block::TILE_SIZE * 0.5f, &xPosition, &yPosition)
 {
 	
 }
@@ -123,7 +123,12 @@ void Entity::Render()
 	AnimatedObject::Render();
 }
 
-void Entity::OnObjectCollide(IEventListener* other)
+void Entity::OnObjectCollide(void* otherTrigger)
 {
+	Object* obj = (Object*)otherTrigger;
 
+	if (obj->HasTag("Player"))
+	{
+		MessageBox(NULL, L"Message received", L"Info", MB_OK);
+	}
 }
