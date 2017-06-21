@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "ResourceManager.h"
 #include "Screen.h"
 #include "AudioSystem.h"

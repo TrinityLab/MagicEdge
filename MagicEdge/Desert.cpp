@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "Desert.h"
 #include "Player.h"
 #include "time.h"
@@ -11,13 +12,8 @@
 #include "Tump.h"
 #include "Portal.h"
 #include "ScoreTable.h"
-#include "Boss.h"
+#include "BossEnemy.h"
 #include "Stone.h"
-
-Desert::Desert(string name) : Overworld(name)
-{
-
-}
 
 void Desert::Generate()
 {
@@ -123,15 +119,15 @@ void Desert::Generate()
 		break;
 	}
 
-	(new Portal("Portal"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
+	//(new Portal("Portal"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
 }
 
 void Desert::OnCreated()
 {
-	Overworld::OnCreated();
+	World::OnCreated();
 }
 
 void Desert::OnDestroyd()
 {
-	Overworld::OnDestroyd();
+	World::OnDestroyd();
 }

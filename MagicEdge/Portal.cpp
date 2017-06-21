@@ -1,31 +1,38 @@
+#include "StandardInc.h"
 #include "Portal.h"
 #include "Player.h"
+#include "ResourceManager.h"
+#include "Renderer.h"
+#include "Object.h"
+#include "SceneManager.h"
 
 bool Portal::go;
 
-Portal::Portal(string name) : AnimatedObject()
+void Portal::OnEnabled()
 {
-	go = false;
-	SetTexture(ResourceManager::GetTexture("Portal"), 3, 1, 0, false);
-	SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
+	Renderer* r = GetOwner()->GetComponent<Renderer>();
+	if (r == nullptr)
+		r = GetOwner()->AddComponent<Renderer>();
 
-	AddTag(name);
+	go = false;
+	r->SetTexture(ResourceManager::GetTexture("Portal"), 3, 1, 0, false);
+	GetOwner()->AddTag("Portal");
 }
 
 void Portal::Update()
 {
-	AnimatedObject::Update();
-
-	Player* player = (Player*)SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
-	if (player == NULL)
+	Object* player = SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
+	if (player == nullptr)
 		return;
 
-	double dirX = player->GetXPosition() - GetXPosition();
-	double dirY = player->GetYPosition() - GetYPosition();
+	Transform* t = player->GetComponent<Transform>();
+
+	double dirX = t->GetXPosition() - t->GetXPosition();
+	double dirY = t->GetYPosition() - t->GetYPosition();
 
 	double dist = sqrt(dirX * dirX + dirY * dirY);
 	
-	if (player->getLevel() >= 1)
+	if (player->GetComponent<Player>()->GetLevel() >= 1)
 	{
 		if (dist <= Block::TILE_SIZE)
 		{

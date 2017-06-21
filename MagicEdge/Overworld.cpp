@@ -1,8 +1,8 @@
+#include "StandardInc.h"
 #include "Overworld.h"
 #include "VoidBlock.h"
 #include "Water.h"
 #include "Sand.h"
-#include "time.h"
 #include "Stone.h"
 #include "Tree.h"
 #include "Rock.h"
@@ -12,12 +12,7 @@
 #include "Altar.h"
 #include "Portal.h"
 #include "ScoreTable.h"
-#include "Boss.h"
-
-Overworld::Overworld(string name) : World(name)
-{
-	
-}
+#include "BossEnemy.h"
 
 void Overworld::Generate()
 {
@@ -142,7 +137,7 @@ void Overworld::Generate()
 		break;
 	}
 
-	(new Portal("Portal"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
+	//(new Portal("Portal"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
 }
 
 void Overworld::OnCreated()

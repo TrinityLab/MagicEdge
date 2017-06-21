@@ -1,6 +1,9 @@
+#include "StandardInc.h"
 #include "Block.h"
 #include "Camera.h"
 #include "Player.h"
+#include "Screen.h"
+#include "SceneManager.h"
 
 Block::Block(int x, int y)
 {
@@ -59,12 +62,12 @@ SDL_Texture* Block::GetTexture()
 
 double Block::GetDistanceToPlayer()
 {
-	Player* player = (Player*)SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
-	if (player == NULL)
+	Object* player = SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
+	if (player == nullptr)
 		return INT_MAX;
 
-	double dirX = x * TILE_SIZE - player->GetXPosition();
-	double dirY = y * TILE_SIZE - player->GetYPosition();
+	double dirX = x * TILE_SIZE - player->GetComponent<Transform>()->GetXPosition();
+	double dirY = y * TILE_SIZE - player->GetComponent<Transform>()->GetYPosition();
 
 	double dist = sqrt(dirX * dirX + dirY * dirY);
 

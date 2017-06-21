@@ -2,11 +2,11 @@
 
 #include "OrkEnemy.h"
 
-class Boss : public OrkEnemy
+class BossEnemy : public Enemy
 {
 public:
-	Boss(string name);
-	virtual void setLevel(int l) override;
+	BossEnemy(Object* owner) : Enemy(owner) {}
+	virtual void SetLevel(int l) override;
 	virtual void Render() override;
 	virtual void Move(double x, double y) override;
 	virtual void OnCreated() override;

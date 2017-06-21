@@ -1,18 +1,25 @@
-	#include "Player.h"
+#include "StandardInc.h"
+#include "Player.h"
 #include "DifficultyInfo.h"
-#include "Ball.h"
 #include "ScoreTable.h"
 #include "Button.h"
 #include "Portal.h"
-
-Player::Player(string name) : Entity(name)
-{
-	AddTag(name);
-}
+#include "Renderer.h"
+#include "ObjectFactory.h"
+#include "ResourceManager.h"
+#include "Keyboard.h"
+#include "Timer.h"
+#include "Mouse.h"
+#include "Camera.h"
+#include "Screen.h"
 
 void Player::OnCreated()
 {
-	name = new Text("PlayerName", "Visitor");
+	Entity::OnCreated();
+
+	GetOwner()->AddTag("Player");
+
+	/*name = new Text("PlayerName", "Visitor");
 	name->SetText(ScoreTable::userName.c_str());
 	name->SetOrigin(0, 0);
 	name->SetPosition(20, 120);
@@ -32,19 +39,20 @@ void Player::OnCreated()
 	score->SetOrigin(0, 0);
 	score->SetText("Score: 0");
 	score->SetFontSize(30);
-	ScoreTable::SetScore(0);
+	ScoreTable::SetScore(0);*/
 
 	Entity::OnCreated();
-	SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0);
 
-	setSpeed(200);
+	Renderer* r;
 
-	SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
-}
+	if ((r = GetOwner()->GetComponent<Renderer>()) == nullptr)
+		r = GetOwner()->AddComponent<Renderer>();
 
-void Player::OnDestroyd()
-{
-	Entity::OnDestroyd();
+	r->SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0);
+
+	SetSpeed(200);
+
+	GetOwner()->GetComponent<Transform>()->SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
 }
 
 void Player::Update()
@@ -55,25 +63,25 @@ void Player::Update()
 
 	if (Keyboard::IsKey(SDL_SCANCODE_A))
 	{
-		Move(Timer::GetDeltaTime()*(-getSpeed()), 0);
+		Move(Timer::GetDeltaTime()*(-GetSpeed()), 0);
 		movement = true;
 	}
 
 	if (Keyboard::IsKey(SDL_SCANCODE_D))
 	{
-		Move(Timer::GetDeltaTime()*(getSpeed()), 0);
+		Move(Timer::GetDeltaTime()*(GetSpeed()), 0);
 		movement = true;
 	}
 
 	if (Keyboard::IsKey(SDL_SCANCODE_W))
 	{
-		Move(0, Timer::GetDeltaTime()*(-getSpeed()));
+		Move(0, Timer::GetDeltaTime()*(-GetSpeed()));
 		movement = true;
 	}
 
 	if (Keyboard::IsKey(SDL_SCANCODE_S))
 	{
-		Move(0, Timer::GetDeltaTime()*(getSpeed()));
+		Move(0, Timer::GetDeltaTime()*(GetSpeed()));
 		movement = true;
 	}
 
@@ -82,34 +90,35 @@ void Player::Update()
 		double x = Mouse::GetMouseX() + Camera::GetXOffset();
 		double y = Mouse::GetMouseY() + Camera::GetYOffset();
 
-		double dirX = x - GetXPosition();
-		double dirY = y - GetYPosition();
+		Transform* t = GetOwner()->GetComponent<Transform>();
+
+		double dirX = x - t->GetXPosition();
+		double dirY = y - t->GetYPosition();
 
 		double dist = sqrt(dirX * dirX + dirY * dirY);
 
-		if (getMana() > 0)
-		{
-			Ball* ball = new Ball("Ball", this);
-			ball->SetPosition(GetXPosition() + (dirX / dist) * Block::TILE_SIZE / 2, GetYPosition() + (dirY / dist) * Block::TILE_SIZE / 2);
-			ball->setV(dirX / dist * 400.0, dirY / dist * 400.0);
-			ball->setDamage(getDamage());
-			ball->SetColor({ 255, 255, 255, 255 });
+		Mana* mana = GetOwner()->GetComponent<Mana>();
 
-			setMana(getMana() - 1);
+		if (mana->GetMana() > 0)
+		{
+			Transform* t = GetOwner()->GetComponent<Transform>();
+
+			ObjectFactory::SpawnDefaultShell(GetOwner(),
+				t->GetXPosition() + (dirX / dist) * Block::TILE_SIZE / 2,
+				t->GetYPosition() + (dirY / dist) * Block::TILE_SIZE / 2,
+				dirX / dist * 400.0, dirY / dist * 400.0,
+				GetDamage(), { 255, 255, 255, 255 });
+
+			mana->SetMana(mana->GetMana() - 1);
 		}
 	}
 }
 
-void Player::SetPosition(double x, double y)
-{
-	Entity::SetPosition(x, y);
-
-	Camera::SetOffset(GetXPosition() - Screen::GetWidth() / 2, GetYPosition() - Screen::GetHeight() / 2);
-}
-
 void Player::Render()
 {
-	FRect shadowRect = GetLocalBoundingBox();
+	Entity::Render();
+
+	/*FRect shadowRect = GetLocalBoundingBox();
 	shadowRect.x += GetXPosition() - Camera::GetXOffset();
 	shadowRect.y += GetYPosition() + Block::TILE_SIZE / 2 - Camera::GetYOffset();
 
@@ -124,94 +133,96 @@ void Player::Render()
 
 	double offset = movement ? (5 * sin(Timer::GetTotalTime() * 10)) : 0;
 
-	yPosition += offset;
+	yPosition += offset;*/
 
-	Entity::Render();
+	Health* health = GetOwner()->GetComponent<Health>();
+	Mana* mana = GetOwner()->GetComponent<Mana>();
 
 	SDL_Rect target1= { 20, 10, 200, 20 };
-	SDL_Rect target2 = { 20, 10, 2 * 100 * getHealth() / GetMaxHealth(), 20 };
+	SDL_Rect target2 = { 20, 10, 2 * 100 * health->GetHealth() / health->GetMaxHealth(), 20 };
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("ScaleHealth"), NULL, &target2);
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("Scale"), NULL, &target1);
 
 	target1 = { 20, 50, 200, 20 };
-	target2 = { 20, 50, 2*100*getMana()/GetMaxMana(), 20 };
+	target2 = { 20, 50, (int)(2*100*mana->GetMana()/mana->GetMaxMana()), 20 };
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("ScaleMana"), NULL, &target2);
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("Scale"), NULL, &target1);
 
 	SDL_SetTextureColorMod(ResourceManager::GetTexture("ScaleEXP"), 128, 0, 0);
 	target1 = { 20, 90, 200, 20 };
-	target2 = { 20, 90, 2 *  getExp() / getLevel(), 20 };
+	target2 = { 20, 90, 2 *  GetExp() / GetLevel(), 20 };
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("ScaleEXP"), NULL, &target2);
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("Scale"), NULL, &target1);
 
-	yPosition -= offset;
+	//yPosition -= offset;
 }
 
 void Player::Move(double x, double y)
 {
 	Entity::Move(x, y);
 
-	Camera::SetOffset(GetXPosition() - Screen::GetWidth() / 2, GetYPosition() - Screen::GetHeight() / 2);
+	Transform* t = GetOwner()->GetComponent<Transform>();
+
+	Camera::SetOffset(t->GetXPosition() - Screen::GetWidth() / 2, t->GetYPosition() - Screen::GetHeight() / 2);
+
+	Renderer* r = GetOwner()->GetComponent<Renderer>();
 
 	if (x < 0)
 	{
-		SetTexture(ResourceManager::GetTexture("CharacterLeft"), 1, 1, 0, false);
+		r->SetTexture(ResourceManager::GetTexture("CharacterLeft"), 1, 1, 0, false);
 	}
 	else if (x > 0)
 	{
-		SetTexture(ResourceManager::GetTexture("CharacterRight"), 1, 1, 0, false);
+		r->SetTexture(ResourceManager::GetTexture("CharacterRight"), 1, 1, 0, false);
 	}
 	else if (y < 0)
 	{
-		SetTexture(ResourceManager::GetTexture("CharacterBack"), 1, 1, 0, false);
+		r->SetTexture(ResourceManager::GetTexture("CharacterBack"), 1, 1, 0, false);
 	}
 	else if (y > 0)
 	{
-		SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0, false);
+		r->SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0, false);
 	}
 }
 
-void Player::setLevel(int l)
+void Player::SetLevel(int l)
 {
-	Entity::setLevel(l);
+	Entity::SetLevel(l);
 
 	difficulty = l;
-	setSpeed(200);
+	SetSpeed(200);
 
-	char lvl[100] = {};
-	_itoa_s(getLevel(), lvl, 100, 10);
+	/*char lvl[100] = {};
+	_itoa_s(GetLevel(), lvl, 100, 10);
 	string temp = "Level: ";
 	temp += lvl;
 	level->SetText(temp);
-	level->SetFontSize(30);
+	level->SetFontSize(30);*/
 
 	if (l >= 1)
 	{
-		Portal* portal = (Portal*)SceneManager::GetCurrentScene()->FindObjectWithTag("Portal");
+		/*Portal* portal = (Portal*)SceneManager::GetCurrentScene()->FindObjectWithTag("Portal");
 		if(portal != NULL)
-			portal->SetTexture(ResourceManager::GetTexture("Portal"), 3, 1, 8, true);
+			portal->SetTexture(ResourceManager::GetTexture("Portal"), 3, 1, 8, true);*/
 	}
 }
 
-void Player::setHealth(int health)
+void Player::OnKilled()
 {
-	Entity::setHealth(health);
+	Entity::OnKilled();
 
-	if (health <= 0)
-	{
-		TexturedObject* background = new TexturedObject();
-		background->AddTag("BlueBack");
-		background->SetPosition(0, 0);
-		Camera::SetOffset(0, 0);
-		background->SetSize(Screen::GetWidth(), Screen::GetHeight());
-		background->SetTexture(ResourceManager::GetTexture("BlueBack"));
-		background->SetSrcRect({ 0, 0, 1280, 720 });
-		background->SetOrigin(0, 0);
-		
-		Button* button = new Button("Exit2", "Button", "ButtonHover", "ButtonPressed");
-		button->SetText("To main menu");
-		button->SetPosition(Screen::GetWidth() / 2, Screen::GetHeight() / 2 - 40);
-		button->SetSize(440, 110);
-		button->SetSrcRect({ 0, 0, 440, 110 });
-	}
+	/*TexturedObject* background = new TexturedObject();
+	background->AddTag("BlueBack");
+	background->SetPosition(0, 0);
+	Camera::SetOffset(0, 0);
+	background->SetSize(Screen::GetWidth(), Screen::GetHeight());
+	background->SetTexture(ResourceManager::GetTexture("BlueBack"));
+	background->SetSrcRect({ 0, 0, 1280, 720 });
+	background->SetOrigin(0, 0);*/
+
+	//Button* button = new Button("Exit2", "Button", "ButtonHover", "ButtonPressed");
+	//button->SetText("To main menu");
+	//button->SetPosition(Screen::GetWidth() / 2, Screen::GetHeight() / 2 - 40);
+	//button->SetSize(440, 110);
+	//button->SetSrcRect({ 0, 0, 440, 110 });
 }

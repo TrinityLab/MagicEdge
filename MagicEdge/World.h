@@ -1,14 +1,14 @@
 #pragma once
 
-#include "System.h"
+#include "ObjectComponent.h"
 #include "Block.h"
 #include "Grass.h"
 #include "Dirt.h"
 
-class World : public Object
+class World : public Component
 {
 public:
-	World(string name);
+	World(Object* obj) : Component(obj) {}
 	virtual void Generate();
 	void Update();
 	void Render();
@@ -16,6 +16,7 @@ public:
 	static const int WIDTH = 101;
 	static const int HEIGHT = 101;
 
+	virtual void OnEnabled();
 	virtual void OnCreated();
 	virtual void OnDestroyd();
 
@@ -23,8 +24,10 @@ public:
 
 	string GetBlockType(int x, int y, int layer);
 	void SetBlock(int x, int y, int layer, Block* block);
+
 protected:
 	int enemiesCount;
+
 private:
 	Block* blocks[2][WIDTH][HEIGHT];
 };

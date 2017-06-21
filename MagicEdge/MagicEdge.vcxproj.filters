@@ -17,9 +17,6 @@
     <Filter Include="Objects\Blocks">
       <UniqueIdentifier>{bb8cc720-e490-4a83-844b-a7976c1eaff1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\Entities">
-      <UniqueIdentifier>{2de8de09-7c82-4b1a-97a5-5f7bf12c4a2b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Objects\Worlds">
       <UniqueIdentifier>{5290b005-2dc0-43b5-bd26-4d375fad1fb9}</UniqueIdentifier>
     </Filter>
@@ -29,11 +26,11 @@
     <Filter Include="GUI">
       <UniqueIdentifier>{e53d8f47-b9dd-42cb-9056-9f44c4420ce3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{a98bad00-563c-475d-a537-f3d7da01d9c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AnimatedObject.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -61,9 +58,6 @@
     <ClCompile Include="Screen.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="TexturedObject.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -84,9 +78,6 @@
     </ClCompile>
     <ClCompile Include="Altar.cpp">
       <Filter>Objects\Blocks</Filter>
-    </ClCompile>
-    <ClCompile Include="Ball.cpp">
-      <Filter>Objects\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Block.cpp">
       <Filter>Objects\Blocks</Filter>
@@ -109,23 +100,11 @@
     <ClCompile Include="Stone.cpp">
       <Filter>Objects\Blocks</Filter>
     </ClCompile>
-    <ClCompile Include="Blood.cpp">
-      <Filter>Objects\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Boss.cpp">
-      <Filter>Objects\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Objects\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Dungeon.cpp">
       <Filter>Objects\Worlds</Filter>
     </ClCompile>
     <ClCompile Include="Overworld.cpp">
       <Filter>Objects\Worlds</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Objects\Entities</Filter>
     </ClCompile>
     <ClCompile Include="DifficultyInfo.cpp">
       <Filter>Other</Filter>
@@ -143,12 +122,6 @@
     </ClCompile>
     <ClCompile Include="Tree.cpp">
       <Filter>Objects\Blocks</Filter>
-    </ClCompile>
-    <ClCompile Include="InsectEnemy.cpp">
-      <Filter>Objects\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="OrkEnemy.cpp">
-      <Filter>Objects\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Trees2.cpp">
       <Filter>Objects\Blocks</Filter>
@@ -201,12 +174,51 @@
     <ClCompile Include="CircleTrigger.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Health.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Mana.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Shell.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectFactory.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoDestroy.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="InsectEnemy.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="OrkEnemy.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BossEnemy.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimatedObject.h">
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
@@ -233,9 +245,6 @@
     <ClInclude Include="Screen.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="TexturedObject.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -254,26 +263,11 @@
     <ClInclude Include="Altar.h">
       <Filter>Objects\Blocks</Filter>
     </ClInclude>
-    <ClInclude Include="Ball.h">
-      <Filter>Objects\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>Objects\Blocks</Filter>
     </ClInclude>
-    <ClInclude Include="Blood.h">
-      <Filter>Objects\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Boss.h">
-      <Filter>Objects\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Dirt.h">
       <Filter>Objects\Blocks</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Objects\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Objects\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Portal.h">
       <Filter>Objects\Blocks</Filter>
@@ -305,9 +299,6 @@
     <ClInclude Include="ScoreTable.h">
       <Filter>Other</Filter>
     </ClInclude>
-    <ClInclude Include="System.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="Utility.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -323,12 +314,6 @@
     </ClInclude>
     <ClInclude Include="MasterManager.h">
       <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="InsectEnemy.h">
-      <Filter>Objects\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="OrkEnemy.h">
-      <Filter>Objects\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Trees2.h">
       <Filter>Objects\Blocks</Filter>
@@ -380,6 +365,48 @@
     </ClInclude>
     <ClInclude Include="CircleTrigger.h">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectComponent.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Health.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Mana.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Shell.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFactory.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoDestroy.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InsectEnemy.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="OrkEnemy.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BossEnemy.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

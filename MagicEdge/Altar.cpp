@@ -1,6 +1,9 @@
+#include "StandardInc.h"
 #include "Altar.h"
 #include "ObstacleMap.h"
 #include "Player.h"
+#include "ResourceManager.h"
+#include "SceneManager.h"
 
 Altar::Altar(int x, int y) : Block(x, y)
 {
@@ -19,11 +22,11 @@ void Altar::Update()
 	{
 		if (rand() % 1000 < 100)
 		{
-			Player* player = (Player*)SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
-			if (player == NULL)
+			Object* player = SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
+			if (player == nullptr)
 				return;
 
-			player->setMana(player->getMana() + 1);
+			player->GetComponent<Mana>()->ManaUp(1);
 		}
 	}
 }

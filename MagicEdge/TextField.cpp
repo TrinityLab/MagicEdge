@@ -1,17 +1,10 @@
+#include "StandardInc.h"
 #include "TextField.h"
 #include "ResourceManager.h"
 #include "Mouse.h"
 #include "Keyboard.h"
 #include "StandardInc.h"
-
-TextField::TextField(string name, string normalTex, string hoverTex, string focusedTex) :
-	Button(name, normalTex, hoverTex, focusedTex)
-{
-	isFocused = false;
-	text = "";
-	SetText(defaultText);
-	maxLen = 0;
-}
+#include "Object.h"
 
 void TextField::SetDefaultText(string text)
 {
@@ -25,13 +18,22 @@ void TextField::SetDefaultText(string text)
 	}
 }
 
+void TextField::OnEnabled()
+{
+	Button::OnEnabled();
+
+	GetOwner()->useCamera = false;
+}
+
 void TextField::Update()
 {
 	Button::Update();
 
+	Renderer* r = GetOwner()->GetComponent<Renderer>();
+
 	if (isFocused)
 	{
-		SetTexture(ResourceManager::GetTexture(Pressed));
+		r->SetTexture(ResourceManager::GetTexture(Pressed));
 	}
 
 	if (IsPressed())
@@ -43,7 +45,9 @@ void TextField::Update()
 			SetText(text + "|");
 	}
 
-	FRect rect = GetLocalBoundingBox();
+	Transform* t = GetOwner()->GetComponent<Transform>();
+
+	FRect rect = t->GetLocalBoundingBox();
 	if (!IsHover())
 	{
 		if (Mouse::IsMouseDown(SDL_BUTTON_LEFT))
@@ -125,4 +129,9 @@ string TextField::GetText()
 void TextField::SetMaxLen(int len)
 {
 	maxLen = len;
+}
+
+void TextField::SetFocused(bool f)
+{
+	isFocused = f;
 }

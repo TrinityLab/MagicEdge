@@ -1,4 +1,6 @@
+#include "StandardInc.h"
 #include "Stone.h"
+#include "ResourceManager.h"
 
 Stone::Stone(int x, int y) : Block(x, y)
 {

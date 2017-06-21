@@ -1,9 +1,12 @@
+#include "StandardInc.h"
 #include "OverWorldScene.h"
 #include "Overworld.h"
 #include "Player.h"
 #include "ScoreTable.h"
 #include "Button.h"
 #include "Portal.h"
+#include "ObjectFactory.h"
+#include "SceneManager.h"
 
 OverWorldScene::OverWorldScene() : Scene()
 {
@@ -12,10 +15,8 @@ OverWorldScene::OverWorldScene() : Scene()
 
 void OverWorldScene::OnOpened()
 {
-	Overworld* world = new Overworld("World");
-	world->Generate();
-
-	Player* player = new Player("Player");
+	Object* world = ObjectFactory::CreateOverworld();
+	world->GetComponent<Overworld>()->Generate();
 
 	int x, y;
 	while (true)
@@ -29,7 +30,7 @@ void OverWorldScene::OnOpened()
 		}
 	}
 
-	player->SetPosition(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
+	Object* player = ObjectFactory::SpawnPlayer(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
 }
 
 void OverWorldScene::OnClosed()

@@ -1,10 +1,10 @@
 #pragma once
 
 #include "StandardInc.h"
-#include "TexturedObject.h"
+#include "ObjectComponent.h"
 #include "Text.h"
 
-class Button : public TexturedObject
+class Button : public Component
 {
 protected:
 	std::string Normal;
@@ -13,14 +13,18 @@ protected:
 	bool isPressed = false;
 	bool isHover = false;
 
-	Text* text;
+	Object* text;
+
 public:
-	Button(string name, string normalTex, string hoverTex, string pressedTex);
+	Button(Object* obj);
 	void Update() override;
+	void OnDestroyd() override;
+	void OnEnabled() override;
 	bool IsPressed();
 	bool IsHover();
 	void SetText(string text, SDL_Color color = {0, 0, 0, 255});
-	virtual void SetPosition(double x, double y) override;
-	virtual void SetSize(double x, double y) override;
-	virtual void SetRotation(double angle) override;
+
+	void SetNormalTex(string normal);
+	void SetHoverTex(string hover);
+	void SetPressedTex(string pressed);
 };

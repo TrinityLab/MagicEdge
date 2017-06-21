@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "Application.h"
 #include "SceneManager.h"
 #include "Timer.h"

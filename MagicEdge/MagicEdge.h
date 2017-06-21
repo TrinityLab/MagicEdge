@@ -1,6 +1,6 @@
 #pragma once
 
-#include "System.h"
+#include "Application.h"
 
 class MagicEdge : public Application
 {

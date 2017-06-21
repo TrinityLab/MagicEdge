@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "BossLocation.h"
 #include "Player.h"
 #include "time.h"
@@ -11,13 +12,8 @@
 #include "Tump.h"
 #include "Portal.h"
 #include "ScoreTable.h"
-#include "Boss.h"
+#include "BossEnemy.h"
 #include "Stone.h"
-
-BossLocation::BossLocation(string name) : Overworld(name)
-{
-
-}
 
 void BossLocation::Generate()
 {
@@ -191,15 +187,15 @@ void BossLocation::Generate()
 		break;
 	}
 
-	(new Portal("Portal"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
+	//(new Portal("Portal"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
 }
 
 void BossLocation::OnCreated()
 {
-
+	World::OnCreated();
 }
 
 void BossLocation::OnDestroyd()
 {
-
+	World::OnDestroyd();
 }

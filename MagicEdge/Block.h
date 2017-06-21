@@ -1,7 +1,6 @@
 #pragma once
 
-#include "SDL.h"
-#include "System.h"
+#include "StandardInc.h"
 
 class Block
 {

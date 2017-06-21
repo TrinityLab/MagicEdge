@@ -1,11 +1,11 @@
 #pragma once
-#include "System.h"
-#include "Overworld.h"
 
-class Desert : public Overworld
+#include "World.h"
+
+class Desert : public World
 {
 public:
-	Desert(string name);
+	Desert(Object* owner) : World(owner) {}
 	void Generate() override;
 	void OnCreated() override;
 	void OnDestroyd() override;

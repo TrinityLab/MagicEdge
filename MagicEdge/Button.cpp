@@ -1,16 +1,30 @@
+#include "StandardInc.h"
 #include "Button.h"
 #include "Mouse.h"
 #include "ResourceManager.h"
+#include "Object.h"
+#include "ObjectFactory.h"
 
-Button::Button(string name, string normalTex, string hoverTex, string pressedTex) : TexturedObject()
+Button::Button(Object* owner) : Component(owner)
 {
-	Normal = normalTex;
-	Hover = hoverTex;
-	Pressed = pressedTex;
+	text = ObjectFactory::UI_SpawnText(0, 0, 0, "", "Visitor");
+}
 
-	this->text = new Text(name + "_Text", "Visitor");
+void Button::OnEnabled()
+{
+	GetOwner()->AddComponent<Renderer>();
 
-	AddTag(name);
+	Transform* bt = GetOwner()->GetComponent<Transform>();
+
+	FRect boundingBox = bt->GetLocalBoundingBox();
+
+	text->GetComponent<Transform>()->SetPosition(
+		bt->GetXPosition() + boundingBox.x + boundingBox.w * 0.5f,
+		bt->GetYPosition() + boundingBox.y + boundingBox.h * 0.5f);
+
+	text->GetComponent<Text>()->SetFontSize(GetOwner()->GetComponent<Transform>()->GetYSize() * 0.7f);
+
+	GetOwner()->useCamera = false;
 }
 
 void Button::Update()
@@ -18,18 +32,22 @@ void Button::Update()
 	isPressed = false;
 	isHover = false;
 
-	SetTexture(ResourceManager::GetTexture(Normal));
+	Renderer* r = GetOwner()->GetComponent<Renderer>();
+	Transform* t = GetOwner()->GetComponent<Transform>();
 
-	TexturedObject::Update();
-	if (Mouse::GetMouseX() <= GetXPosition() + GetXSize() / 2 && Mouse::GetMouseX() >= GetXPosition() - GetXSize() / 2 &&
-		Mouse::GetMouseY() <= GetYPosition() + GetYSize() / 2 && Mouse::GetMouseY() >= GetYPosition() - GetYSize() / 2)
+	r->SetTexture(ResourceManager::GetTexture(Normal));
+
+	FRect rect = t->GetLocalBoundingBox();
+
+	if (Mouse::GetMouseX() >= rect.x + t->GetXPosition() && Mouse::GetMouseX() <= rect.x + rect.w + t->GetXPosition() &&
+		Mouse::GetMouseY() >= rect.y + t->GetYPosition() && Mouse::GetMouseY() <= rect.y + rect.h + t->GetYPosition())
 	{
-		SetTexture(ResourceManager::GetTexture(Hover));
+		r->SetTexture(ResourceManager::GetTexture(Hover));
 		isHover = true;
 
 		if (Mouse::IsMouseUp(SDL_BUTTON_LEFT))
 		{
-			SetTexture(ResourceManager::GetTexture(Pressed));
+			r->SetTexture(ResourceManager::GetTexture(Pressed));
 			isPressed = true;
 		}
 	}
@@ -47,26 +65,25 @@ bool Button::IsHover()
 
 void Button::SetText(string txt, SDL_Color color)
 {
-	text->SetText(txt, color);
+	text->GetComponent<Text>()->SetText(txt, color);
 }
 
-void Button::SetPosition(double x, double y)
+void Button::OnDestroyd()
 {
-	TexturedObject::SetPosition(x, y);
-
-	text->SetPosition(x, y);
+	Object::Destroy(text);
 }
 
-void Button::SetSize(double x, double y)
+void Button::SetNormalTex(string normal)
 {
-	TexturedObject::SetSize(x, y);
-
-	text->SetFontSize((int)(y * 0.5));
+	Normal = normal;
 }
 
-void Button::SetRotation(double angle)
+void Button::SetHoverTex(string hover)
 {
-	TexturedObject::SetRotation(angle);
+	Hover = hover;
+}
 
-	text->SetRotation(angle);
+void Button::SetPressedTex(string pressed)
+{
+	Pressed = pressed;
 }

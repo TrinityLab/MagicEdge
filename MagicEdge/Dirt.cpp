@@ -1,4 +1,6 @@
+#include "StandardInc.h"
 #include "Dirt.h"
+#include "ResourceManager.h"
 
 Dirt::Dirt(int x, int y) : Block(x, y)
 {

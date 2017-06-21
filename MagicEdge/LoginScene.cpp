@@ -1,7 +1,11 @@
+#include "StandardInc.h"
 #include "LoginScene.h"
 #include "Button.h"
 #include "ScoreTable.h"
 #include "TextField.h"
+#include "ObjectFactory.h"
+#include "Screen.h"
+#include "SceneManager.h"
 
 LoginScene::LoginScene() : Scene()
 {
@@ -10,23 +14,13 @@ LoginScene::LoginScene() : Scene()
 
 void LoginScene::OnOpened()
 {
-	TexturedObject* background = new TexturedObject();
-	background->AddTag("Background");
-	background->SetOrigin(0, 0);
-	background->SetPosition(0, 0);
-	background->SetSize(Screen::GetWidth(), Screen::GetHeight());
-	background->SetTexture(ResourceManager::GetTexture("MenuBackground"));
+	Object* background = ObjectFactory::UI_SpawnBackground("MenuBackground");
 
-	Button* okButton = new Button("LoginOkButton", "Button", "ButtonHover", "ButtonPressed");
-	okButton->SetPosition(Screen::GetWidth() / 2, Screen::GetHeight() * 0.6f);
-	okButton->SetSize(440, 110);
-	okButton->SetText("OK");
+	okButton = ObjectFactory::UI_SpawnButton(Screen::GetWidth() / 2 - 220, Screen::GetHeight() * 0.6f - 55, 440, 110,
+		"Button", "ButtonHover", "ButtonPressed", "OK");
 
-	TextField* field = new TextField("UsernameField", "TextField", "TextField", "TextField");
-	field->SetPosition(Screen::GetWidth() / 2, Screen::GetHeight() * 0.4f);
-	field->SetSize(700, 110);
-	field->SetMaxLen(16);
-	field->SetDefaultText("User name");
+	textField = ObjectFactory::UI_SpawnTextField(Screen::GetWidth() / 2 - 350, Screen::GetHeight() * 0.4f - 55, 700, 110,
+		"TextField", "TextField", "TextField", "User name", 16);
 }
 
 void LoginScene::OnClosed()
@@ -38,11 +32,9 @@ void LoginScene::Update()
 {
 	Scene::Update();
 
-	Button* loginOkButton = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("LoginOkButton");
-	if (loginOkButton->IsPressed())
+	if (okButton->GetComponent<Button>()->IsPressed())
 	{
-		TextField* field = (TextField*)SceneManager::GetCurrentScene()->FindObjectWithTag("UsernameField");
-		ScoreTable::userName = field->GetText();
+		ScoreTable::userName = textField->GetComponent<TextField>()->GetText();
 
 		SceneManager::OpenScene("MainMenu");
 	}

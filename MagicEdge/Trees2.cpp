@@ -1,5 +1,7 @@
+#include "StandardInc.h"
 #include "Trees2.h"
 #include "ObstacleMap.h"
+#include "ResourceManager.h"
 
 Trees2::Trees2(int x, int y) : Block(x, y)
 {

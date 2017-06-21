@@ -1,19 +1,9 @@
 #pragma once
 
-#include "Entity.h"
+#include "Enemy.h"
 
-class InsectEnemy : public Entity
+class InsectEnemy : public Enemy
 {
-protected:
-	double attackRadius;
-	double attackReloadTime;
-	double currentReloadTime;
 public:
-	InsectEnemy(string name);
-	void Update() override;
-	void Render() override;
-	void OnCreated() override;
-	virtual void Move(double x, double y) override;
-	virtual void setLevel(int l) override;
-	virtual int GetScore();
+	InsectEnemy(Object* owner) : Enemy(owner) {}
 };

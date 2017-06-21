@@ -1,6 +1,5 @@
+#include "StandardInc.h"
 #include "Mouse.h"
-#include <Windows.h>
-#include "SDL.h"
 
 int Mouse::x = 0;
 int Mouse::y = 0;

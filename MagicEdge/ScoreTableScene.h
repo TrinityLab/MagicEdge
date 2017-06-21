@@ -5,6 +5,8 @@
 
 class ScoreTableScene : public Scene
 {
+private:
+	Object* exitButton;
 public:
 	ScoreTableScene();
 	string GetSceneName() override;

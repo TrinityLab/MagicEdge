@@ -1,5 +1,7 @@
+#include "StandardInc.h"
 #include "Rock.h"
 #include "ObstacleMap.h"
+#include "ResourceManager.h"
 
 Rock::Rock(int x, int y) : Block(x, y)
 {

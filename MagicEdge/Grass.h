@@ -1,6 +1,5 @@
 #pragma once
 
-#include "System.h"
 #include "Block.h"
 
 class Grass : public Block

@@ -2,32 +2,25 @@
 #include "Text.h"
 #include "ResourceManager.h"
 #include "Screen.h"
+#include "Object.h"
+#include "ResourceManager.h"
 
-Text::Text(string name, string font, string text) : TexturedObject()
+void Text::OnEnabled()
 {
-	SetFont(font);
-	SetText(text, {0, 0, 0, 255});
-
-	useCamera = false;
-
-	AddTag(name);
+	GetOwner()->useCamera = false;
 }
 
 void Text::SetText(string text, SDL_Color color)
 {
 	this->text = text;
 
+	Renderer* r = GetOwner()->GetComponent<Renderer>();
+
 	SDL_Surface* surface = TTF_RenderText_Solid(ResourceManager::GetFont(font), text.c_str(), color);
 	SDL_Texture* tex = SDL_CreateTextureFromSurface(Screen::GetRenderer(), surface);
 
-	SetTexture(tex);
+	r->SetTexture(tex);
 	SDL_FreeSurface(surface);
-
-	int width, height;
-
-	SDL_QueryTexture(tex, NULL, NULL, &width, &height);
-
-	SetSrcRect({ 0, 0, width, height });
 
 	SetFontSize(fontSize);
 }
@@ -42,19 +35,21 @@ void Text::SetSize(double x, double y)
 	int width;
 	int height;
 
-	SDL_QueryTexture(GetTexture(), NULL, NULL, &width, &height);
+	Renderer* r = GetOwner()->GetComponent<Renderer>();
+
+	SDL_QueryTexture(r->GetTexture(), NULL, NULL, &width, &height);
 
 	float aspectRatio = width / (float)height;
 
+	Transform* t = GetOwner()->GetComponent<Transform>();
+
 	if (aspectRatio > 1)
 	{
-		xSize = x;
-		ySize = xSize / aspectRatio;
+		t->SetSize(x, x / aspectRatio);
 	}
 	else
 	{
-		ySize = y;
-		xSize = ySize * aspectRatio;
+		t->SetSize(y, y * aspectRatio);
 	}
 }
 
@@ -64,7 +59,9 @@ void Text::SetFontSize(int size)
 
 	int width, height;
 
-	SDL_QueryTexture(GetTexture(), NULL, NULL, &width, &height);
+	Renderer* r = GetOwner()->GetComponent<Renderer>();
+
+	SDL_QueryTexture(r->GetTexture(), NULL, NULL, &width, &height);
 
 	double aspectRatio = width / (double)height;
 
@@ -73,6 +70,7 @@ void Text::SetFontSize(int size)
 
 void Text::SetSizeForce(double x, double y)
 {
-	xSize = x;
-	ySize = y;
+	Transform* t = GetOwner()->GetComponent<Transform>();
+
+	t->SetSize(x, y);
 }

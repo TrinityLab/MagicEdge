@@ -1,12 +1,11 @@
 #pragma once
 
-#include "System.h"
-#include "Overworld.h"
+#include "World.h"
 
-class Dungeon : public Overworld
+class Dungeon : public World
 {
 public:
-	Dungeon(string name);
+	Dungeon(Object* owner) : World(owner) {}
 	void Generate() override;
 	void OnCreated() override;
 	void OnDestroyd() override;

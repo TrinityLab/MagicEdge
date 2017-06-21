@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "AudioSystem.h"
 
 FMOD::System* AudioSystem::audioSystem;

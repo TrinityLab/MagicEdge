@@ -5,7 +5,7 @@
 class Overworld : public World
 {
 public:
-	Overworld(string name);
+	Overworld(Object* owner) : World(owner) {}
 	void Generate() override;
 	void OnCreated() override;
 	void OnDestroyd() override;

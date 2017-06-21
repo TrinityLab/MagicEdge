@@ -1,9 +1,8 @@
 #pragma once
 
-#include "System.h"
 #include "OverWorldScene.h"
 
-class DesertScene: public OverWorldScene
+class DesertScene : public OverWorldScene
 {
 public:
 	string GetSceneName() override;

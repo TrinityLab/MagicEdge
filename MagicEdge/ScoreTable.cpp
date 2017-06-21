@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "ScoreTable.h"
 #include <stdio.h>
 #include "Text.h"

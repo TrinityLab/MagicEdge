@@ -1,5 +1,7 @@
+#include "StandardInc.h"
 #include "Tump.h"
 #include "ObstacleMap.h"
+#include "ResourceManager.h"
 
 Tump::Tump(int x, int y) : Block(x, y)
 {

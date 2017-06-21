@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "MagicEdge.h"
 #include "MasterManager.h"
 

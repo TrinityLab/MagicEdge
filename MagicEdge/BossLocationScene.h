@@ -1,6 +1,5 @@
 #pragma once
 
-#include "System.h"
 #include "OverWorldScene.h"
 
 class BossLocationScene : public OverWorldScene

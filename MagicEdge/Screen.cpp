@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "Screen.h"
 
 int Screen::width;

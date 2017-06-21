@@ -1,6 +1,7 @@
-#include "System.h"
-
+#include "StandardInc.h"
+#include "ResourceManager.h"
 #include "MasterManager.h"
+#include "Application.h"
 
 map<string, SDL_Texture*> ResourceManager::textures;
 map<string, TTF_Font*> ResourceManager::fonts;

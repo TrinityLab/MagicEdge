@@ -1,5 +1,6 @@
 #pragma once
-#include "System.h"
+
+#include "Scene.h"
 
 class OverWorldScene : public Scene
 {

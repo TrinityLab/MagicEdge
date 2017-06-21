@@ -1,8 +1,10 @@
+#include "StandardInc.h"
 #include "ScoreTableScene.h"
 #include "Button.h"
 #include "Screen.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
+#include "ObjectFactory.h"
 
 ScoreTableScene::ScoreTableScene() : Scene()
 {
@@ -32,27 +34,17 @@ int FindMaxResult(vector<Result> results)
 
 void ScoreTableScene::OnOpened()
 {
-	TexturedObject* background = new TexturedObject();
-	background->AddTag("Background");
-	background->SetOrigin(0, 0);
-	background->SetPosition(0, 0);
-	background->SetSize(Screen::GetWidth(), Screen::GetHeight());
-	background->SetTexture(ResourceManager::GetTexture("MenuBackground"));
-	background->SetSrcRect({ 0, 0, 1280, 720 });
+	ObjectFactory::UI_SpawnBackground("MenuBackground");
 
-	Button* exitButton = new Button("MainMenuButton", "Button", "ButtonHover", "ButtonPressed");
-	exitButton->SetText("Back");
-	exitButton->SetPosition(Screen::GetWidth() / 2, 250 + 220 + 100);
-	exitButton->SetSize(440, 110);
-	exitButton->SetSrcRect({ 0, 0, 440, 110 });
+	exitButton = ObjectFactory::UI_SpawnButton(
+		Screen::GetWidth() / 2 - 220, 250 + 220 + 100 - 55, 440, 110,
+		"Button", "ButtonHover", "ButtonPressed", "Back");
 
 	vector<Result> results = ScoreTable::LoadScores();
 	
-	Button* head = new Button("Header", "TableHead", "TableHead", "TableHead");
-	head->SetText("Name     Score");
-	head->SetPosition(Screen::GetWidth() / 2, 150 - 60);
-	head->SetSize(600, 60);
-	head->SetSrcRect({ 0, 0, 609, 63 });
+	ObjectFactory::UI_SpawnButton(
+		Screen::GetWidth() / 2 - 300, 30, 600, 60,
+		"TableHead", "TableHead", "TableHead", "Name     Score");
 
 	int count = 0;
 	while (count < 5 && results.size() > 0)
@@ -63,11 +55,10 @@ void ScoreTableScene::OnOpened()
 		sprintf_s(name, 100, "%s%d", "Row", count);
 		char res[100] = {};
 		sprintf_s(res, 100, "%s     %d", results[i].name.c_str(), results[i].score);
-		Button* row = new Button(name, "TableRow", "TableRow", "TableRow");
-		row->SetText(res);
-		row->SetPosition(Screen::GetWidth() / 2, 150 + 60 * count );
-		row->SetSize(600, 60);
-		row->SetSrcRect({ 0, 0, 609, 63 });
+
+		ObjectFactory::UI_SpawnButton(
+			Screen::GetWidth() / 2 - 300, 150 + 60 * count, 600, 60,
+			"TableRow", "TableRow", "TableRow", res);
 
 		int i2 = 0;
 		for (auto iter = results.begin(); iter != results.end(); iter++)
@@ -88,8 +79,7 @@ void ScoreTableScene::Update()
 {
 	Scene::Update();
 
-	Button* exitButton = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("MainMenuButton");
-	if (exitButton->IsPressed())
+	if (exitButton->GetComponent<Button>()->IsPressed())
 	{
 		SceneManager::OpenScene("MainMenu");
 	}

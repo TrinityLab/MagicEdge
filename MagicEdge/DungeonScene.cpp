@@ -1,7 +1,10 @@
+#include "StandardInc.h"
 #include "DungeonScene.h"
 #include "Dungeon.h"
 #include "Player.h"
 #include "ScoreTable.h"
+#include "ObjectFactory.h"
+#include "Scene.h"
 
 string DungeonScene::GetSceneName()
 {
@@ -10,10 +13,8 @@ string DungeonScene::GetSceneName()
 
 void DungeonScene::OnOpened()
 {
-	Dungeon* world = new Dungeon("World");
-	world->Generate();
-
-	Player* player = new Player("Player");
+	Object* world = ObjectFactory::CreateDungeon();
+	world->GetComponent<Dungeon>()->Generate();
 
 	int x, y;
 	while (true)
@@ -27,7 +28,7 @@ void DungeonScene::OnOpened()
 		}
 	}
 
-	player->SetPosition(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
+	Object* player = ObjectFactory::SpawnPlayer(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
 }
 
 void DungeonScene::OnClosed()

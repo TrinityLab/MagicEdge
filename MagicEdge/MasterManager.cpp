@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "MasterManager.h"
 #include "MainMenu.h"
 #include "ScoreTableScene.h"

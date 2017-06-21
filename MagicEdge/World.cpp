@@ -1,12 +1,17 @@
+#include "StandardInc.h"
 #include "World.h"
 #include "Camera.h"
 #include "ObstacleMap.h"
 #include "OrkEnemy.h"
-#include "Boss.h"
+#include "BossEnemy.h"
 #include "DifficultyInfo.h"
 #include "AudioSystem.h"
+#include "ObjectFactory.h"
+#include "ResourceManager.h"
+#include "Screen.h"
+#include "SceneManager.h"
 
-World::World(string name) : Object()
+void World::OnEnabled()
 {
 	enemiesCount = 0;
 
@@ -21,7 +26,7 @@ World::World(string name) : Object()
 		}
 	}
 
-	AddTag(name);
+	GetOwner()->AddTag("World");
 }
 
 void World::Generate()
@@ -74,8 +79,10 @@ void World::Update()
 				if (player == NULL)
 					return;
 
-				int dist = (int)((x - player->GetXPosition() / Block::TILE_SIZE) * (x - player->GetXPosition() / Block::TILE_SIZE) +
-					(y - player->GetYPosition() / Block::TILE_SIZE) * (y - player->GetYPosition() / Block::TILE_SIZE));
+				Transform* t = player->GetComponent<Transform>();
+
+				int dist = (int)((x - t->GetXPosition() / Block::TILE_SIZE) * (x - t->GetXPosition() / Block::TILE_SIZE) +
+					(y - t->GetYPosition() / Block::TILE_SIZE) * (y - t->GetYPosition() / Block::TILE_SIZE));
 
 				if (dist <= 20)
 				{
@@ -86,9 +93,9 @@ void World::Update()
 			}
 
 			if (rand() % 100 > 20)
-				(new InsectEnemy("Enemy"))->SetPosition(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
+				ObjectFactory::SpawnInsectEnemy(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
 			else
-				(new OrkEnemy("Enemy"))->SetPosition(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
+				ObjectFactory::SpawnOrkEnemy(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
 		}
 	}
 

@@ -1,8 +1,11 @@
+#include "StandardInc.h"
 #include "BossLocationScene.h"
 #include "BossLocation.h"
 #include "Player.h"
 #include "ScoreTable.h"
-#include "Boss.h"
+#include "BossEnemy.h"
+#include "ObjectFactory.h"
+#include "Scene.h"
 
 string BossLocationScene::GetSceneName()
 {
@@ -11,10 +14,8 @@ string BossLocationScene::GetSceneName()
 
 void BossLocationScene::OnOpened()
 {
-	BossLocation* world = new BossLocation("World");
-	world->Generate();
-
-	Player* player = new Player("Player");
+	Object* world = ObjectFactory::CreateBossLocation();
+	world->GetComponent<BossLocation>()->Generate();
 
 	int x, y;
 	while (true)
@@ -28,7 +29,7 @@ void BossLocationScene::OnOpened()
 		}
 	}
 
-	player->SetPosition(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
+	Object* player = ObjectFactory::SpawnPlayer(x * Block::TILE_SIZE, y * Block::TILE_SIZE);
 
 	int xb, yb;
 	while (true)
@@ -43,8 +44,7 @@ void BossLocationScene::OnOpened()
 		break;
 	}
 
-	(new Boss("Enemy"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
-
+	ObjectFactory::SpawnBossEnemy(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
 }
 
 void BossLocationScene::OnClosed()

@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "Dungeon.h"
 #include "Player.h"
 #include "time.h"
@@ -11,12 +12,7 @@
 #include "Tump.h"
 #include "Portal.h"
 #include "ScoreTable.h"
-#include "Boss.h"
-
-Dungeon::Dungeon(string name) : Overworld(name)
-{
-	
-}
+#include "BossEnemy.h"
 
 void Dungeon::Generate()
 {
@@ -113,15 +109,15 @@ void Dungeon::Generate()
 		break;
 	}
 
-	(new Portal("Portal"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
+	//(new Portal("Portal"))->SetPosition(x * Block::TILE_SIZE + Block::TILE_SIZE / 2, y * Block::TILE_SIZE + Block::TILE_SIZE / 2);
 }
 
 void Dungeon::OnCreated()
 {
-	Overworld::OnCreated();
+	World::OnCreated();
 }
 
 void Dungeon::OnDestroyd()
 {
-	Overworld::OnDestroyd();
+	World::OnDestroyd();
 }

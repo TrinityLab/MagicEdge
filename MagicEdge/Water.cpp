@@ -1,5 +1,7 @@
+#include "StandardInc.h"
 #include "Water.h"
 #include "ObstacleMap.h"
+#include "ResourceManager.h"
 
 Water::Water(int x, int y) : Block(x, y)
 {

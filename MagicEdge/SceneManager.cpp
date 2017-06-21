@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "SceneManager.h"
 
 SceneManager* SceneManager::singleton = NULL;

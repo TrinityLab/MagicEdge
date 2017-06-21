@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "Camera.h"
 #include "Screen.h"
 

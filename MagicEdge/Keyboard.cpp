@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "Keyboard.h"
 
 const Uint8* Keyboard::state = NULL;

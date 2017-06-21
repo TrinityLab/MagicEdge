@@ -1,14 +1,14 @@
 #pragma once
 
 #include "StandardInc.h"
-#include "InsectEnemy.h"
+#include "Enemy.h"
 
-class OrkEnemy : public InsectEnemy
+class OrkEnemy : public Enemy
 {
-public:
-	OrkEnemy(string name);
-	virtual void setLevel(int l) override;
+public: 
+	OrkEnemy(Object* owner) : Enemy(owner) {}
+	virtual void SetLevel(int l) override;
 	virtual void Move(double x, double y) override;
-	virtual int GetScore() override;
+	virtual int GetRewardScore() override;
 	virtual void OnCreated() override;
 };

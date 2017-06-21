@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "VoidBlock.h"
 
 VoidBlock::VoidBlock(int x, int y) : Block(x, y)

@@ -1,3 +1,4 @@
+#include "StandardInc.h"
 #include "Scene.h"
 #include "Screen.h"
 #include "TriggerChecker.h"

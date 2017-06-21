@@ -1,9 +1,12 @@
 #pragma once
 
-#include "System.h"
+#include "Scene.h"
 
 class LoginScene : public Scene
 {
+private:
+	Object* okButton;
+	Object* textField;
 public:
 	LoginScene();
 	string GetSceneName() override;

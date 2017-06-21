@@ -1,14 +1,15 @@
 #pragma once
 
-#include "Block.h"
+#include "ObjectComponent.h"
 
-class Portal : public AnimatedObject
+class Portal : public Component
 {
 protected:
 	static bool go;
 	static bool activity;
 public:
-	Portal(string name);
+	Portal(Object* obj) : Component(obj) {}
 	void Update() override;
+	void OnEnabled() override;
 	static bool NeedGo();
 };

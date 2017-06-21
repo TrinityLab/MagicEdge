@@ -152,13 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Altar.cpp" />
-    <ClCompile Include="AnimatedObject.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="AudioSystem.cpp" />
-    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="AutoDestroy.cpp" />
     <ClCompile Include="Block.cpp" />
-    <ClCompile Include="Blood.cpp" />
-    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossEnemy.cpp" />
     <ClCompile Include="BossLocationScene.cpp" />
     <ClCompile Include="BossLocation.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -170,9 +168,14 @@
     <ClCompile Include="Dirt.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="DungeonScene.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="InsectEnemy.cpp" />
     <ClCompile Include="LoginScene.cpp" />
+    <ClCompile Include="Mana.cpp" />
     <ClCompile Include="MessageManager.cpp" />
+    <ClCompile Include="ObjectComponent.cpp" />
+    <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="OrkEnemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Grass.cpp" />
@@ -188,6 +191,7 @@
     <ClCompile Include="OverWorldScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Portal.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Rock.cpp" />
     <ClCompile Include="Sand.cpp" />
@@ -196,11 +200,12 @@
     <ClCompile Include="ScoreTable.cpp" />
     <ClCompile Include="ScoreTableScene.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Shell.cpp" />
     <ClCompile Include="Stone.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextField.cpp" />
-    <ClCompile Include="TexturedObject.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Trees2.cpp" />
     <ClCompile Include="Trigger.cpp" />
@@ -212,13 +217,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Altar.h" />
-    <ClInclude Include="AnimatedObject.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="AudioSystem.h" />
-    <ClInclude Include="Ball.h" />
+    <ClInclude Include="AutoDestroy.h" />
     <ClInclude Include="Block.h" />
-    <ClInclude Include="Blood.h" />
-    <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossEnemy.h" />
     <ClInclude Include="BossLocation.h" />
     <ClInclude Include="BossLocationScene.h" />
     <ClInclude Include="Button.h" />
@@ -230,9 +233,14 @@
     <ClInclude Include="Dirt.h" />
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="DungeonScene.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="InsectEnemy.h" />
     <ClInclude Include="LoginScene.h" />
+    <ClInclude Include="Mana.h" />
     <ClInclude Include="MessageManager.h" />
+    <ClInclude Include="ObjectComponent.h" />
+    <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="OrkEnemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Grass.h" />
@@ -247,6 +255,7 @@
     <ClInclude Include="OverWorldScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Portal.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Rock.h" />
     <ClInclude Include="Sand.h" />
@@ -255,13 +264,13 @@
     <ClInclude Include="ScoreTable.h" />
     <ClInclude Include="ScoreTableScene.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="Shell.h" />
     <ClInclude Include="StandardInc.h" />
     <ClInclude Include="Stone.h" />
-    <ClInclude Include="System.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextField.h" />
-    <ClInclude Include="TexturedObject.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="Trees2.h" />
     <ClInclude Include="Trigger.h" />
