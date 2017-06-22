@@ -234,6 +234,7 @@
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="DungeonScene.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="Health.h" />
     <ClInclude Include="InsectEnemy.h" />
     <ClInclude Include="LoginScene.h" />

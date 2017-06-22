@@ -8,14 +8,14 @@ protected:
 	bool isActive;
 
 	Object* owner;
-	virtual void Render() {};
-	virtual void Update() {};
+	virtual void Render() {}
+	virtual void Update() {}
 
-	virtual void OnCreated() {};
-	virtual void OnDestroyd() {};
+	virtual void OnCreated() {}
+	virtual void OnDestroyd() {}
 
-	virtual void OnEnabled() {};
-	virtual void OnDisabled() {};
+	virtual void OnEnabled() {}
+	virtual void OnDisabled() {}
 
 public:
 	Component(Object* owner);

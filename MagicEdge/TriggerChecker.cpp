@@ -41,12 +41,12 @@ void TriggerChecker::Update()
 	{
 		auto iter2 = iter;
 		iter2++;
-		for ( ; iter2 != triggers.end(); iter2++)
+		for (; iter2 != triggers.end(); iter2++)
 		{
 			if (IsTriggered(*iter, *iter2))
 			{
-				MessageManager::SendMessage(*iter, *iter2, Message::OnCollide, *iter);
-				MessageManager::SendMessage(*iter2, *iter, Message::OnCollide, *iter2);
+				MessageManager::SendMessage((*iter)->GetOwner(), (*iter2)->GetOwner(), Message::OnCollide, (*iter)->GetOwner());
+				MessageManager::SendMessage((*iter2)->GetOwner(), (*iter)->GetOwner(), Message::OnCollide, (*iter2)->GetOwner());
 			}
 		}
 	}
@@ -56,13 +56,16 @@ bool TriggerChecker::IsTriggered(Trigger* t1, Trigger* t2)
 {
 	if (t1->GetType() == Trigger::CircleTrigger && t2->GetType() == Trigger::CircleTrigger)
 	{
-		CircleTrigger* ct1 = (CircleTrigger*)t1;
-		CircleTrigger* ct2 = (CircleTrigger*)t2;
+		CircleTrigger* ct1 = dynamic_cast<CircleTrigger*>(t1);
+		CircleTrigger* ct2 = dynamic_cast<CircleTrigger*>(t2);
+
+		Transform* t1 = ct1->GetOwner()->GetComponent<Transform>();
+		Transform* t2 = ct2->GetOwner()->GetComponent<Transform>();
 
 		float d = ct1->GetRadius() + ct2->GetRadius();
 
-		float xDist = ct1->GetXPos() - ct2->GetXPos();
-		float yDist = ct1->GetYPos() - ct2->GetYPos();
+		float xDist = t1->GetXPosition() - t2->GetXPosition();
+		float yDist = t1->GetYPosition() - t2->GetYPosition();
 
 		if (xDist * xDist + yDist * yDist <= d * d)
 		{

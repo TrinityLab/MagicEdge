@@ -7,17 +7,20 @@
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "Timer.h"
+#include "Player.h"
 
 void Enemy::OnCreated()
 {
+	Transform* t = GetOwner()->GetComponent<Transform>();
+	t->SetSize(Block::TILE_SIZE * 1.5, Block::TILE_SIZE * 1.5);
+
+	Entity::OnCreated();
+
 	GetOwner()->AddTag("Enemy");
 
 	SetLevel(rand() % 3 - 1 + difficulty);
 	if (GetLevel() <= 0)
 		SetLevel(1);
-
-	Transform* t = GetOwner()->GetComponent<Transform>();
-	t->SetSize(Block::TILE_SIZE * 1.5, Block::TILE_SIZE * 1.5);
 
 	int type = rand() % 2;
 
@@ -105,4 +108,15 @@ void Enemy::Update()
 			currentReloadTime = reloadTime;
 		}
 	}
+}
+
+void Enemy::OnKilled()
+{
+	Entity::OnKilled();
+
+	Object* player = SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
+
+	__int64 scoreExp = GetRewardScore() << 32;
+	scoreExp |= (__int64)GetLevel();
+	MessageManager::SendMessage(GetOwner(), player, Message::OnPlayerKillEnemy, scoreExp);
 }

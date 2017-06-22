@@ -12,7 +12,7 @@
 #include "Enemy.h"
 #include "Portal.h"
 
-class Object
+class Object final
 {
 private:
 	static list<Object*> objects;
@@ -52,6 +52,7 @@ public:
 	bool useCamera = true;
 
 	friend class Scene;
+	friend class MessageManager;
 };
 
 template<typename T>

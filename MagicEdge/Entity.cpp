@@ -2,10 +2,14 @@
 #include "Entity.h"
 #include "Camera.h"
 #include "Object.h"
+#include "CircleTrigger.h"
+#include "ObjectFactory.h"
 
 void Entity::SetExp(int E)
 {
 	exp = E;
+	if (exp >= GetLevel() * 20)
+		SetLevel(GetLevel() + 1);
 }
 
 void Entity::SetLevel(int L)
@@ -49,14 +53,25 @@ double Entity::GetSpeed()
 	return speed;
 }
 
-void Entity::OnEnabled()
+void Entity::OnCreated()
 {
-	GetOwner()->AddComponent<Health>();
-	GetOwner()->AddComponent<Mana>();
-	GetOwner()->AddComponent<Renderer>();
+	if(GetOwner()->GetComponent<Health>() == nullptr)
+		GetOwner()->AddComponent<Health>();
+
+	if(GetOwner()->GetComponent<Mana>() == nullptr)
+		GetOwner()->AddComponent<Mana>();
+
+	if(GetOwner()->GetComponent<Renderer>() == nullptr)
+		GetOwner()->AddComponent<Renderer>();
 
 	SetExp(0);
 	SetLevel(1);
+
+	if (GetOwner()->GetComponent<CircleTrigger>() == nullptr)
+	{
+		CircleTrigger* trigger = GetOwner()->AddComponent<CircleTrigger>();
+		trigger->SetRadius(GetOwner()->GetComponent<Transform>()->GetXSize() * 0.5f);
+	}
 }
 
 void Entity::Move(double x, double y)
@@ -78,4 +93,25 @@ void Entity::Move(double x, double y)
 int Entity::GetDamage()
 {
 	return damage;
+}
+
+void Entity::TakeDamage(float damage)
+{
+	GetOwner()->GetComponent<Health>()->HealthDown(damage);
+
+	ObjectFactory::SpawnBlood(
+		GetOwner()->GetComponent<Transform>()->GetXPosition(),
+		GetOwner()->GetComponent<Transform>()->GetYPosition());
+
+	if (GetOwner()->GetComponent<Health>()->GetHealth() <= 0)
+		OnKilled();
+}
+
+void Entity::OnCollide(Object* obj)
+{
+	if (obj->HasTag("Shell"))
+	{
+		if(obj->GetComponent<Shell>()->GetCreator() != GetOwner())
+			TakeDamage(obj->GetComponent<Shell>()->GetDamage());
+	}
 }

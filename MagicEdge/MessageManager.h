@@ -1,25 +1,14 @@
 #pragma once
 
-#include "Object.h"
-
-interface IEventListener
-{
-
-};
-
-interface ICollideEventListener : IEventListener
-{
-public:
-	virtual void OnObjectCollide(void* otherTrigger) {};
-};
+class Object;
+class Component;
 
 struct Message
 {
 	enum MessageType
 	{
 		OnCollide,
-		OnTakeDamage,
-		OnAttack
+		OnPlayerKillEnemy
 	};
 
 	union
@@ -32,24 +21,38 @@ struct Message
 		char data_c;
 	};
 
-	void* sender;
-	IEventListener* target;
+	Object* sender;
+	Object* target;
 	MessageType type;
 };
 
 class MessageManager
 {
 public:
-	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, void* data);
-	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, int data);
-	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, float data);
-	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, double data);
-	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, long long int data);
-	static void SendMessage(void* from, IEventListener* target, Message::MessageType message, char data);
+	static void SendMessage(Object* from, Object* target, Message::MessageType message, void* data);
+	static void SendMessage(Object* from, Object* target, Message::MessageType message, int data);
+	static void SendMessage(Object* from, Object* target, Message::MessageType message, float data);
+	static void SendMessage(Object* from, Object* target, Message::MessageType message, double data);
+	static void SendMessage(Object* from, Object* target, Message::MessageType message, long long int data);
+	static void SendMessage(Object* from, Object* target, Message::MessageType message, char data);
 private:
 	static queue<shared_ptr<Message>> messages;
 	static void Update();
 
+	template<typename T>
+	static bool IsListener(Component* c);
+
 	friend class Scene;
 };
 
+class ICollideEventListener
+{
+public:
+	virtual void OnCollide(Object* otherObject) = 0;
+};
+
+class IKillEnemyListener
+{
+public:
+	virtual void OnKillEnemy(Object* enemy, int score, int exp) = 0;
+};

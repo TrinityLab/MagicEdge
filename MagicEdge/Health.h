@@ -16,6 +16,4 @@ public:
 	void HealthUp(float h);
 	void SetMaxHealth(float h);
 	float GetMaxHealth();
-
-	void Update();
 };

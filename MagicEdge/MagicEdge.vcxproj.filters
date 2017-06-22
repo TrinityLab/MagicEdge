@@ -168,12 +168,6 @@
     <ClCompile Include="TriggerChecker.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Trigger.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="CircleTrigger.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectComponent.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -214,6 +208,12 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="BossEnemy.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Trigger.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleTrigger.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -360,12 +360,6 @@
     <ClInclude Include="TriggerChecker.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Trigger.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleTrigger.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectComponent.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -406,6 +400,15 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="BossEnemy.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleTrigger.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

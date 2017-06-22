@@ -16,6 +16,7 @@ public:
 	virtual void OnCreated() override;
 	virtual void Move(double deltaX, double deltaY) override;
 	virtual void SetLevel(int L);
+	virtual void OnKilled() override;
 
 	virtual int GetRewardScore();
 };

@@ -1,11 +1,9 @@
 #include "StandardInc.h"
 #include "CircleTrigger.h"
 
-CircleTrigger::CircleTrigger(float r, double *x, double *y) : Trigger(x, y)
+CircleTrigger::CircleTrigger(Object* owner) : Trigger(owner)
 {
 	type = Trigger::CircleTrigger;
-
-	this->r = r;
 }
 
 void CircleTrigger::SetRadius(float r)

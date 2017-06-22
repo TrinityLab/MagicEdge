@@ -5,7 +5,7 @@
 class CircleTrigger : public Trigger
 {
 public:
-	CircleTrigger(float r, double *x, double *y);
+	CircleTrigger(Object* owner);
 	
 	void SetRadius(float r);
 	float GetRadius();

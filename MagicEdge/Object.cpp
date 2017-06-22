@@ -158,4 +158,9 @@ void Object::OnDestroyd()
 		if (c->IsActive())
 			c->OnDestroyd();
 	}
+
+	for (Component* c : components)
+	{
+		delete c;
+	}
 }

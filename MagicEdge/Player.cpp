@@ -15,6 +15,8 @@
 
 void Player::OnCreated()
 {
+	GetOwner()->GetComponent<Transform>()->SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
+
 	Entity::OnCreated();
 
 	GetOwner()->AddTag("Player");
@@ -41,8 +43,6 @@ void Player::OnCreated()
 	score->SetFontSize(30);
 	ScoreTable::SetScore(0);*/
 
-	Entity::OnCreated();
-
 	Renderer* r;
 
 	if ((r = GetOwner()->GetComponent<Renderer>()) == nullptr)
@@ -51,8 +51,6 @@ void Player::OnCreated()
 	r->SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0);
 
 	SetSpeed(200);
-
-	GetOwner()->GetComponent<Transform>()->SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
 }
 
 void Player::Update()
@@ -225,4 +223,10 @@ void Player::OnKilled()
 	//button->SetPosition(Screen::GetWidth() / 2, Screen::GetHeight() / 2 - 40);
 	//button->SetSize(440, 110);
 	//button->SetSrcRect({ 0, 0, 440, 110 });
+}
+
+void Player::OnKillEnemy(Object* enemy, int score, int exp)
+{
+	SetExp(GetExp() + exp);
+	ScoreTable::AddScore(score);
 }
