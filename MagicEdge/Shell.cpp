@@ -67,9 +67,7 @@ void Shell::SetCreator(Object* obj)
 
 void Shell::OnCollide(Object* otherObject)
 {
-	if (otherObject != creator)
-		Object::Destroy(GetOwner());
-	else if (otherObject->HasTag("Shell") && otherObject->GetComponent<Shell>()->GetCreator() != creator)
+	if (otherObject != creator && !(otherObject->HasTag("Shell") && otherObject->GetComponent<Shell>()->GetCreator() == creator))
 		Object::Destroy(GetOwner());
 }
 

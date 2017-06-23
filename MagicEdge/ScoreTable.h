@@ -15,10 +15,10 @@ class ScoreTable
 {
 private:
 	static int score;
+
 public:
 	static std::string userName;
-	static void AddScore(int score);
-	static void SetScore(int score);
 	static void SaveScore();
 	static vector<Result> LoadScores();
+	static void SendScore(int score);
 };

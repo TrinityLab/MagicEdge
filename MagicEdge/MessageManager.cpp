@@ -70,8 +70,11 @@ void MessageManager::SendMessage(Object* from, Object* target, Message::MessageT
 	messages.push(msg);
 }
 
-void MessageManager::Update()
+bool MessageManager::Update()
 {
+	if (messages.size() == 0)
+		return false;
+
 	while (messages.size() > 0)
 	{
 		shared_ptr<Message> msg = messages.front();
@@ -86,16 +89,23 @@ void MessageManager::Update()
 			}
 			break;
 		case Message::OnPlayerKillEnemy:
+			__int64 score = msg->data_l;
+			score &= 0xffffffff00000000;
+			score >>= 32;
+			__int64 exp = msg->data_l;
+			exp &= 0x00000000ffffffff;
 			for (Component* c : msg->target->components)
 			{
 				if (IsListener<IKillEnemyListener>(c))
-					dynamic_cast<IKillEnemyListener*>(c)->OnKillEnemy(msg->sender, (msg->data_l & 0xffffffff) >> 32, msg->data_l & 0x00000000ffffffff);
+					dynamic_cast<IKillEnemyListener*>(c)->OnKillEnemy(msg->sender, (int)score, (int)exp);
 			}
 			break;
 		}
 
 		messages.pop();
 	}
+
+	return true;
 }
 
 template<typename T>

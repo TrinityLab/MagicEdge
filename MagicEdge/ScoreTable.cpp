@@ -3,9 +3,10 @@
 #include <stdio.h>
 #include "Text.h"
 #include "SceneManager.h"
+#include "Player.h"
 
-int ScoreTable::score = 0;
 std::string ScoreTable::userName;
+int ScoreTable::score = 0;
 
 void ScoreTable::SaveScore()
 {
@@ -82,25 +83,7 @@ vector<Result> ScoreTable::LoadScores()
 	return results;
 }
 
-void ScoreTable::SetScore(int score)
+void ScoreTable::SendScore(int score)
 {
 	ScoreTable::score = score;
-
-	Text* text = (Text*)SceneManager::GetCurrentScene()->FindObjectWithTag("PlayerScore");
-	if (text == NULL)
-	{
-		return;
-	}
-
-	char scr[100] = {};
-	string temp = "Score: ";
-	_itoa_s(score, scr, 100, 10);
-	temp += scr;
-	text->SetText(temp);
-	text->SetFontSize(30);
-}
-
-void ScoreTable::AddScore(int score)
-{
-	SetScore(ScoreTable::score + score);
 }

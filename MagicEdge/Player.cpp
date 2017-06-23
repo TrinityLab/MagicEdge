@@ -12,36 +12,29 @@
 #include "Mouse.h"
 #include "Camera.h"
 #include "Screen.h"
+#include "SceneManager.h"
 
 void Player::OnCreated()
 {
 	GetOwner()->GetComponent<Transform>()->SetSize(Block::TILE_SIZE, Block::TILE_SIZE);
 
+	string temp = "Level: ";
+	temp += std::to_string(GetLevel());
+	Object* levelObj = ObjectFactory::UI_SpawnText(200, 160, 30, temp, "Visitor");
+	levelText = levelObj->GetComponent<Text>();
+	levelObj->GetComponent<Transform>()->SetOrigin(0.0f, 0.0f);
+
+	Object* nameObj = ObjectFactory::UI_SpawnText(20, 120, 30, ScoreTable::userName, "Visitor");
+	nameText = nameObj->GetComponent<Text>();
+	nameObj->GetComponent<Transform>()->SetOrigin(0.0f, 0.0f);
+
+	Object* scoreObj = ObjectFactory::UI_SpawnText(20, 160, 30, "Score: 0", "Visitor");
+	scoreText = scoreObj->GetComponent<Text>();
+	scoreObj->GetComponent<Transform>()->SetOrigin(0.0f, 0.0f);
+
 	Entity::OnCreated();
 
 	GetOwner()->AddTag("Player");
-
-	/*name = new Text("PlayerName", "Visitor");
-	name->SetText(ScoreTable::userName.c_str());
-	name->SetOrigin(0, 0);
-	name->SetPosition(20, 120);
-	name->SetFontSize(30);
-
-	char lvl[100] = {};
-	_itoa_s(getLevel(), lvl, 100, 10);
-	string temp = "Level: ";
-	temp += lvl;
-	level = new Text("PlayerLevel", "Visitor", temp);
-	level->SetPosition(200, 160);
-	level->SetOrigin(0, 0);
-	level->SetFontSize(30);
-
-	score = new Text("PlayerScore", "Visitor", temp);
-	score->SetPosition(20, 160);
-	score->SetOrigin(0, 0);
-	score->SetText("Score: 0");
-	score->SetFontSize(30);
-	ScoreTable::SetScore(0);*/
 
 	Renderer* r;
 
@@ -50,7 +43,7 @@ void Player::OnCreated()
 
 	r->SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0);
 
-	SetSpeed(200);
+	score = 0;
 }
 
 void Player::Update()
@@ -107,7 +100,7 @@ void Player::Update()
 				dirX / dist * 400.0, dirY / dist * 400.0,
 				GetDamage(), { 255, 255, 255, 255 });
 
-			mana->SetMana(mana->GetMana() - 1);
+			mana->ManaDown(1);
 		}
 	}
 }
@@ -137,12 +130,12 @@ void Player::Render()
 	Mana* mana = GetOwner()->GetComponent<Mana>();
 
 	SDL_Rect target1= { 20, 10, 200, 20 };
-	SDL_Rect target2 = { 20, 10, 2 * 100 * health->GetHealth() / health->GetMaxHealth(), 20 };
+	SDL_Rect target2 = { 20, 10, 200.0f * health->GetHealth() / health->GetMaxHealth(), 20 };
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("ScaleHealth"), NULL, &target2);
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("Scale"), NULL, &target1);
 
 	target1 = { 20, 50, 200, 20 };
-	target2 = { 20, 50, (int)(2*100*mana->GetMana()/mana->GetMaxMana()), 20 };
+	target2 = { 20, 50, (int)(200.0f*mana->GetMana()/mana->GetMaxMana()), 20 };
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("ScaleMana"), NULL, &target2);
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("Scale"), NULL, &target1);
 
@@ -190,12 +183,12 @@ void Player::SetLevel(int l)
 	difficulty = l;
 	SetSpeed(200);
 
-	/*char lvl[100] = {};
-	_itoa_s(GetLevel(), lvl, 100, 10);
-	string temp = "Level: ";
-	temp += lvl;
-	level->SetText(temp);
-	level->SetFontSize(30);*/
+	if (levelText != nullptr)
+	{
+		string temp = "Level: ";
+		temp += std::to_string(GetLevel());
+		levelText->SetText(temp);
+	}
 
 	if (l >= 1)
 	{
@@ -209,24 +202,38 @@ void Player::OnKilled()
 {
 	Entity::OnKilled();
 
-	/*TexturedObject* background = new TexturedObject();
-	background->AddTag("BlueBack");
-	background->SetPosition(0, 0);
-	Camera::SetOffset(0, 0);
-	background->SetSize(Screen::GetWidth(), Screen::GetHeight());
-	background->SetTexture(ResourceManager::GetTexture("BlueBack"));
-	background->SetSrcRect({ 0, 0, 1280, 720 });
-	background->SetOrigin(0, 0);*/
+	ScoreTable::SendScore(GetScore());
 
-	//Button* button = new Button("Exit2", "Button", "ButtonHover", "ButtonPressed");
-	//button->SetText("To main menu");
-	//button->SetPosition(Screen::GetWidth() / 2, Screen::GetHeight() / 2 - 40);
-	//button->SetSize(440, 110);
-	//button->SetSrcRect({ 0, 0, 440, 110 });
+	ObjectFactory::UI_SpawnBackground("BlueBack");
+	
+	exitButton2 = ObjectFactory::UI_SpawnButton(
+		Screen::GetWidth() / 2 - 220, Screen::GetHeight() / 2 - 40 - 55, 440, 110,
+		"Button", "ButtonHover", "ButtonPressed", "To main menu");
+
+	exitButton2->AddTag("Exit2");
 }
 
 void Player::OnKillEnemy(Object* enemy, int score, int exp)
 {
 	SetExp(GetExp() + exp);
-	ScoreTable::AddScore(score);
+	AddScore(score);
+}
+
+void Player::SetScore(int s)
+{
+	score = s;
+
+	string temp = "Score: ";
+	temp += std::to_string(score);
+	scoreText->SetText(temp);
+}
+
+void Player::AddScore(int s)
+{
+	SetScore(score + s);
+}
+
+int Player::GetScore()
+{
+	return score;
 }

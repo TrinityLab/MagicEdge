@@ -3,7 +3,7 @@
 
 void Mana::SetMana(float h)
 {
-	this->mana = h;
+	mana = h;
 
 	if (mana > maxMana)
 		mana = maxMana;
@@ -33,10 +33,10 @@ void Mana::ManaUp(float h)
 
 void Mana::SetMaxMana(float h)
 {
-	mana = h;
+	maxMana = h;
 }
 
 float Mana::GetMaxMana()
 {
-	return mana;
+	return maxMana;
 }

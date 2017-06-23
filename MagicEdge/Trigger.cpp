@@ -7,7 +7,7 @@ Trigger::Trigger(Object* owner) : Component(owner)
 	TriggerChecker::AddTrigger(this);
 }
 
-Trigger::~Trigger()
+void Trigger::OnDestroyd()
 {
 	TriggerChecker::RemoveTrigger(this);
 }

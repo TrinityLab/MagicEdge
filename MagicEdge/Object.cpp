@@ -83,24 +83,10 @@ void Object::ClearObjects()
 	if (objects.size() <= 0)
 		return;
 
-	Object** temp = new Object*[objects.size()];
-
-	int i = 0;
 	for (auto iter = objects.begin(); iter != objects.end(); iter++)
 	{
-		temp[i] = *iter;
-		i++;
+		Object::Destroy(*iter);
 	}
-
-	for (i = 0; i < objects.size(); i++)
-	{
-		temp[i]->OnDestroyd();
-		delete temp[i];
-	}
-
-	delete[] temp;
-
-	objects.clear();
 }
 
 void Object::AddPreparedObjects()

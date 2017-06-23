@@ -116,7 +116,11 @@ void Enemy::OnKilled()
 
 	Object* player = SceneManager::GetCurrentScene()->FindObjectWithTag("Player");
 
-	__int64 scoreExp = GetRewardScore() << 32;
-	scoreExp |= (__int64)GetLevel();
-	MessageManager::SendMessage(GetOwner(), player, Message::OnPlayerKillEnemy, scoreExp);
+	if (player != nullptr)
+	{
+		__int64 scoreExp = GetRewardScore();
+		scoreExp <<= 32;
+		scoreExp |= (__int64)GetLevel();
+		MessageManager::SendMessage(GetOwner(), player, Message::OnPlayerKillEnemy, scoreExp);
+	}
 }

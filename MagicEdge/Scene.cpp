@@ -10,15 +10,6 @@ Scene::Scene()
 
 void Scene::Update()
 {
-	Object::AddPreparedObjects();
-
-	for (Object* obj : Object::objects)
-	{
-		if (!obj->destroy)
-			obj->Update();
-	}
-
-	TriggerChecker::Update();
 	MessageManager::Update();
 
 	for (auto iter = Object::objects.begin(); iter != Object::objects.end();)
@@ -35,6 +26,16 @@ void Scene::Update()
 			iter++;
 		}
 	}
+
+	Object::AddPreparedObjects();
+
+	for (Object* obj : Object::objects)
+	{
+		if (!obj->destroy)
+			obj->Update();
+	}
+
+	TriggerChecker::Update();
 }
 
 void Scene::Render()

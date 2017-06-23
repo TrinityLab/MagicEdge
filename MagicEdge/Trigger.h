@@ -12,7 +12,7 @@ public:
 	};
 
 	Trigger(Object* owner);
-	virtual ~Trigger();
+	virtual void OnDestroyd();
 
 	TriggerType GetType();
 

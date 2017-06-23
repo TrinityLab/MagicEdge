@@ -16,8 +16,6 @@ void MainMenu::OnOpened()
 {
 	SDL_Delay(1000);
 
-	ScoreTable::AddScore(0);
-
 	Object* background = ObjectFactory::UI_SpawnBackground("MenuBackground");
 
 	Object* startButton = ObjectFactory::UI_SpawnButton(

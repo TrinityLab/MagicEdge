@@ -37,7 +37,7 @@ public:
 	static void SendMessage(Object* from, Object* target, Message::MessageType message, char data);
 private:
 	static queue<shared_ptr<Message>> messages;
-	static void Update();
+	static bool Update();
 
 	template<typename T>
 	static bool IsListener(Component* c);

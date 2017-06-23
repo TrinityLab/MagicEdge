@@ -49,19 +49,10 @@ void OverWorldScene::Update()
 {
 	Scene::Update();
 
-	Button* button = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("Exit");
-	if (button != NULL)
+	Object* button = SceneManager::GetCurrentScene()->FindObjectWithTag("Exit2");
+	if (button != nullptr)
 	{
-		if (button->IsPressed())
-		{
-			SceneManager::OpenScene("MainMenu");
-		}
-	}
-
-	button = (Button*)SceneManager::GetCurrentScene()->FindObjectWithTag("Exit2");
-	if (button != NULL)
-	{
-		if (button->IsPressed())
+		if (button->GetComponent<Button>()->IsPressed())
 		{
 			SceneManager::OpenScene("MainMenu");
 		}
