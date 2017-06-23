@@ -27,4 +27,6 @@ public:
 	void SetNormalTex(string normal);
 	void SetHoverTex(string hover);
 	void SetPressedTex(string pressed);
+
+	Text* GetText();
 };

@@ -22,7 +22,7 @@ void Button::OnEnabled()
 		bt->GetXPosition() + boundingBox.x + boundingBox.w * 0.5f,
 		bt->GetYPosition() + boundingBox.y + boundingBox.h * 0.5f);
 
-	text->GetComponent<Text>()->SetFontSize(GetOwner()->GetComponent<Transform>()->GetYSize() * 0.7f);
+	text->GetComponent<Text>()->SetFontSize(GetOwner()->GetComponent<Transform>()->GetYSize() * 0.6f);
 
 	GetOwner()->useCamera = false;
 }
@@ -86,4 +86,9 @@ void Button::SetHoverTex(string hover)
 void Button::SetPressedTex(string pressed)
 {
 	Pressed = pressed;
+}
+
+Text* Button::GetText()
+{
+	return text->GetComponent<Text>();
 }

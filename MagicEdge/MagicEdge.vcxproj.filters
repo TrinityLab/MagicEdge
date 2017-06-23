@@ -216,6 +216,9 @@
     <ClCompile Include="CircleTrigger.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -409,6 +412,9 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="CircleTrigger.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerRenderer.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

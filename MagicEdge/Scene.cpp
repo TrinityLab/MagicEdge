@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Screen.h"
 #include "TriggerChecker.h"
+#include "Camera.h"
 
 Scene::Scene()
 {
@@ -59,7 +60,7 @@ Object* Scene::FindObjectWithTag(string tag)
 
 void Scene::OnOpened()
 {
-	
+	Camera::SetOffset(0.0, 0.0);
 }
 
 void Scene::OnClosed()

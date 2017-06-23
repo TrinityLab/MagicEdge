@@ -4,7 +4,7 @@
 
 class Renderer : public Component
 {
-private:
+protected:
 	SDL_Texture* texture = nullptr;
 	SDL_Rect srcRect;
 	double time = 0.0;

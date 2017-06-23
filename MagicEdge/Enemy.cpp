@@ -16,6 +16,9 @@ void Enemy::OnCreated()
 
 	Entity::OnCreated();
 
+	if (GetOwner()->GetComponent<Renderer>() == nullptr)
+		GetOwner()->AddComponent<Renderer>();
+
 	GetOwner()->AddTag("Enemy");
 
 	SetLevel(rand() % 3 - 1 + difficulty);

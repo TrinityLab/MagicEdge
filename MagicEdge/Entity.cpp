@@ -61,9 +61,6 @@ void Entity::OnCreated()
 	if(GetOwner()->GetComponent<Mana>() == nullptr)
 		GetOwner()->AddComponent<Mana>();
 
-	if(GetOwner()->GetComponent<Renderer>() == nullptr)
-		GetOwner()->AddComponent<Renderer>();
-
 	SetExp(0);
 	SetLevel(1);
 

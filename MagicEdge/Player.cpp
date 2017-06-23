@@ -34,16 +34,18 @@ void Player::OnCreated()
 
 	Entity::OnCreated();
 
-	GetOwner()->AddTag("Player");
-
 	Renderer* r;
 
-	if ((r = GetOwner()->GetComponent<Renderer>()) == nullptr)
-		r = GetOwner()->AddComponent<Renderer>();
+	if ((r = GetOwner()->GetComponent<PlayerRenderer>()) == nullptr)
+		r = GetOwner()->AddComponent<PlayerRenderer>();
+
+	GetOwner()->AddTag("Player");
 
 	r->SetTexture(ResourceManager::GetTexture("Character"), 1, 1, 0);
 
 	score = 0;
+
+	Camera::Follow(GetOwner()->GetComponent<Transform>());
 }
 
 void Player::Update()
@@ -109,23 +111,6 @@ void Player::Render()
 {
 	Entity::Render();
 
-	/*FRect shadowRect = GetLocalBoundingBox();
-	shadowRect.x += GetXPosition() - Camera::GetXOffset();
-	shadowRect.y += GetYPosition() + Block::TILE_SIZE / 2 - Camera::GetYOffset();
-
-	SDL_Rect rect = { (int)shadowRect.x, (int)shadowRect.y, (int)shadowRect.w, (int)shadowRect.h };
-
-	int width, height;
-	SDL_QueryTexture(ResourceManager::GetTexture("Shadow"), NULL, NULL, &width, &height);
-
-	SDL_Rect srcRect = { 0, 0, width, height };
-
-	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("Shadow"), &srcRect, &rect);
-
-	double offset = movement ? (5 * sin(Timer::GetTotalTime() * 10)) : 0;
-
-	yPosition += offset;*/
-
 	Health* health = GetOwner()->GetComponent<Health>();
 	Mana* mana = GetOwner()->GetComponent<Mana>();
 
@@ -141,11 +126,9 @@ void Player::Render()
 
 	SDL_SetTextureColorMod(ResourceManager::GetTexture("ScaleEXP"), 128, 0, 0);
 	target1 = { 20, 90, 200, 20 };
-	target2 = { 20, 90, 2 *  GetExp() / GetLevel(), 20 };
+	target2 = { 20, 90, (int)(200 * GetExp() / (GetLevel() * 20.0f)), 20 };
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("ScaleEXP"), NULL, &target2);
 	SDL_RenderCopy(Screen::GetRenderer(), ResourceManager::GetTexture("Scale"), NULL, &target1);
-
-	//yPosition -= offset;
 }
 
 void Player::Move(double x, double y)
@@ -154,9 +137,7 @@ void Player::Move(double x, double y)
 
 	Transform* t = GetOwner()->GetComponent<Transform>();
 
-	Camera::SetOffset(t->GetXPosition() - Screen::GetWidth() / 2, t->GetYPosition() - Screen::GetHeight() / 2);
-
-	Renderer* r = GetOwner()->GetComponent<Renderer>();
+	PlayerRenderer* r = GetOwner()->GetComponent<PlayerRenderer>();
 
 	if (x < 0)
 	{
@@ -211,6 +192,9 @@ void Player::OnKilled()
 		"Button", "ButtonHover", "ButtonPressed", "To main menu");
 
 	exitButton2->AddTag("Exit2");
+	exitButton2->GetComponent<Button>()->GetText()->SetFontSize(exitButton2->GetComponent<Transform>()->GetYSize() * 0.4f);
+
+	Camera::Follow(nullptr);
 }
 
 void Player::OnKillEnemy(Object* enemy, int score, int exp)
@@ -236,4 +220,9 @@ void Player::AddScore(int s)
 int Player::GetScore()
 {
 	return score;
+}
+
+bool Player::IsMove()
+{
+	return movement;
 }

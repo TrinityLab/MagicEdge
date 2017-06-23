@@ -11,6 +11,7 @@
 #include "Shell.h"
 #include "Enemy.h"
 #include "Portal.h"
+#include "PlayerRenderer.h"
 
 class Object final
 {

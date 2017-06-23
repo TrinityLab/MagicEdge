@@ -8,7 +8,6 @@ class Player : public Entity, public IKillEnemyListener
 {
 private:
 	int score;
-
 	bool movement = false;
 
 	Text* levelText = nullptr;
@@ -31,4 +30,6 @@ public:
 	void SetScore(int s);
 	void AddScore(int s);
 	int GetScore();
+
+	bool IsMove();
 };
